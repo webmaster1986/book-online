@@ -1,0 +1,14 @@
+.DS_STORE
+node_modules
+*~
+*.pyc
+static
+.grunt
+*.log*
+.idea
+*.iml
+.vscode
+dist
+package-lock.json
+server/data/capture
+yarn.lock
