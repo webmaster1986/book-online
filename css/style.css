@@ -606,6 +606,7 @@ li.confirm{	height: 60px;	width: 257px;	border: 1px solid #C88864;	background-co
 
 .login_data{ width: 85%; margin: 0 auto; }
 .right_data  ul{ display: none; }
+.login_data{ margin-top: 45px; }
 .right_data ul.navbar-right{ display: block; }
 .book_data{ width: 100%; }
 .product_heading h2{ font-size: 20px; }
