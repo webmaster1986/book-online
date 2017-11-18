@@ -1,1 +1,6 @@
-<?php include_once(“/login.html”); ?>
+<?php
+<script>
+window.location.href = 'index.html'
+</script>
+
+ ?>
