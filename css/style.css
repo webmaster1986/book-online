@@ -519,7 +519,7 @@ li.departure_data span {
 }
 
 .tab_info li {
-    width: 23.33%;
+    width: 30%;
     float: left;
     text-align: center;
 }
@@ -537,12 +537,12 @@ li.departure_data span {
 
 .tab_info li:first-child {
     text-align: left;
-    width: 15%;
+    width: 20%;
 }
 
 .tab_info li:last-child {
     text-align: right;
-    width: 15%;
+    width: 20%;
 }
 
 .tab_info li h2 {

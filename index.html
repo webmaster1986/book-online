@@ -3,14 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome</title>
-
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link href="css/pickmeup.css" rel="stylesheet">
     <link href="css/demo.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body ng-app="book-online">
+
+<!-- Header -->
 <header>
     <div class="container-fluid">
         <div class="row">
@@ -35,103 +36,84 @@
                         <li><i class="fa fa-map-marker"></i>Sabi Sand, 1260 Sabie Park</li>
                     </ul>
                     <ul class="navbar-right">
-                        <li><a href="login.html">AGENT LOGIN > </a></li>
+                        <li><a href="/book-online/#/login">AGENT LOGIN > </a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<!-- End Header -->
+
+<!-- Menu Section -->
 <section>
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="book_data">
-                    <div class="book_title">
-                        <h3>BOOK YOUR STAY AT SILVAN SAFARI</h3>
-
-                    </div>
-                    <div class="book_calendar">
-                        <div class="calendar_top">
-                            <ul>
-                                <li class="arrival_data">
-                                    <h5>ARRIVAL DATE</h5>
-                                    <h1>01 <i class="fa fa-angle-down"></i></h1>
-                                    <span>NOVEMBER 2017</span>
-                                    <span>WEDNESDAY</span>
-                                    <div class="mb_dt">Select date</div>
-                                </li>
-                                <li class="departure_data">
-                                    <h5>DEPARTURE DATE</h5>
-                                    <h1>03 <i class="fa fa-angle-down"></i></h1>
-                                    <span>NOVEMBER 2017</span>
-                                    <span>FRIDAY</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="calendar_bottom">
-                            <article>
-                                <div class="3-calendars"></div>
-                            </article>
-                        </div>
-                        <div class="mb_info">
-                            <h5>DEPARTURE</h5>
-                            <select class="form-control">
-                                <option>Select date</option>
-                                <option>Select date</option>
-                                <option>Select date</option>
-                                <option>Select date</option>
-                                <option>Select date</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="number_data">
-                        <ul>
-                            <li>
-                                <div class="number_info">
-                                    <div class="number_heading">NUMBER OF ADULTS</div>
-                                    <div class="number_text">
-                                        <div class="number_left"><a><i class="fa fa-minus"></i></a></div>
-                                        <div class="number_center"><input type="text" class="form-control" id="emailId"
-                                                                          placeholder="2"></div>
-                                        <div class="number_right"><a><i class="fa fa-plus"></i></a></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="number_info">
-                                    <div class="number_heading">NUMBER OF CHILDREN UNDER 12</div>
-                                    <div class="number_text">
-                                        <div class="number_left"><a><i class="fa fa-minus"></i></a></div>
-                                        <div class="number_center"><input type="text" class="form-control" id="emailId2"
-                                                                          placeholder="2"></div>
-                                        <div class="number_right"><a><i class="fa fa-plus"></i></a></div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="availability">
-                        <a href="suites_and_rates.html">Check Availability</a>
-                    </div>
-                    <div class="bottom_data">
-                        <div class="bt_left">
-                            <p>Best rate guarantee!</p>
-                        </div>
-                        <div class="bt_right">
-                            <p>info@silvansafari.com | +27835398254</p>
-                        </div>
-                    </div>
+                <div class="tab_info">
+                    <ul>
+                        <li class="active">
+                            <a href="/book-online/#/home">
+                                <span>Select Dates</span>
+                                <!--<i class="fa fa-check"></i>-->
+                                <h2>1</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/book-online/#/suites">
+                                <span>Suites & Rates</span>
+                                <!--<i class="fa fa-check"></i>-->
+                                <h2>2</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/book-online/#/personal">
+                                <span>Personal Information</span>
+                                <h2>3</h2>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/book-online/#/confirm">
+                                <span>Confirm Booking</span>
+                                <h2>4</h2>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!-- End Menu Section -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div ng-view></div>
+        </div>
+    </div>
+</section>
 
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="ft_logo">
+                    <a href="#"><img src="images/Nav_logo.svg" alt="" /></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="card"><img src="images/visa.jpg" alt="" /></div>
+            </div>
+        </div>
+    </div>
+</footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.pickmeup.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/demo.js"></script>
+<script src="js/jquery.pickmeup.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="pages/home/home.js"></script>
 </body>
 </html>
