@@ -395,8 +395,16 @@ li.departure_data span {
     color: #828282;
 }
 
-.number_left a, .number_right a {
+.number_text button, .number_text button {
     color: #828282;
+    background:none;
+    border: none;
+}
+input[type="button"] {
+    outline: none;
+}
+input[type="button"]::-moz-focus-inner {
+    border: 0;
 }
 
 .number_center {

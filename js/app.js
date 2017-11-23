@@ -1,4 +1,10 @@
-var app = angular.module('book-online', ['ngRoute']);
+var app = angular.module('book-online', [
+    'ngRoute',
+    'ngResource',
+    'ui.router',
+    'ui.router.state.events',
+    'ngStorage',
+  ]);
 
 app.config(function($routeProvider) {
 
@@ -32,15 +38,7 @@ app.config(function($routeProvider) {
     .otherwise({redirectTo: '/home'});
 });
 
-app.controller('RateController', function($scope) {
-  // Write Your dynamic code here
-});
 app.controller('LoginController', function($scope) {
   // Write Your dynamic code here
 });
-app.controller('PersonalController', function($scope) {
-  // Write Your dynamic code here
-});
-app.controller('ConfirmController', function($scope) {
-  // Write Your dynamic code here
-});
+

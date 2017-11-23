@@ -1,119 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link href="css/pickmeup.css" rel="stylesheet">
-    <link href="css/demo.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body ng-app="book-online">
-
-<!-- Header -->
-<header>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-5">
-                <div class="logo">
-                    <a href="#"><img src="images/Nav_logo.svg" alt=""/></a>
-                </div>
-                <div class="mb_logo"><a href="#"><img src="images/mb_logo.png" alt=""/></a></div>
-            </div>
-            <div class="col-md-9 col-sm-9 col-xs-7">
-                <div class="right_data">
-                    <ul>
-                        <li>Silvan Safari Lodge
-                            <ul class="star">
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
-                                <li><i class="fa fa-star"></i></li>
+<html lang="en" ng-app="bookOnline">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{pageTitle}}</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+        <link href="css/pickmeup.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+        <link href="css/demo.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body ng-controller="appCtrl">
+        <!-- Header -->
+        <header>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-5">
+                        <div class="logo">
+                            <a href="#"><img src="images/Nav_logo.svg" alt=""/></a>
+                        </div>
+                        <div class="mb_logo"><a href="#"><img src="images/mb_logo.png" alt=""/></a></div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-7">
+                        <div class="right_data">
+                            <ul>
+                                <li>Silvan Safari Lodge
+                                    <ul class="star">
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </li>
+                                <li><i class="fa fa-map-marker"></i>Sabi Sand, 1260 Sabie Park</li>
                             </ul>
-                        </li>
-                        <li><i class="fa fa-map-marker"></i>Sabi Sand, 1260 Sabie Park</li>
-                    </ul>
-                    <ul class="navbar-right">
-                        <li><a href="/book-online/#/login">AGENT LOGIN > </a></li>
-                    </ul>
+                            <ul class="navbar-right">
+                                <li><a href="/login">AGENT LOGIN > </a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</header>
-<!-- End Header -->
+        </header>
+        <!-- End Header -->
 
-<!-- Menu Section -->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="tab_info">
-                    <ul>
-                        <li class="active">
-                            <a href="/book-online/#/home">
-                                <span>Select Dates</span>
-                                <!--<i class="fa fa-check"></i>-->
-                                <h2>1</h2>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/book-online/#/suites">
-                                <span>Suites & Rates</span>
-                                <!--<i class="fa fa-check"></i>-->
-                                <h2>2</h2>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/book-online/#/personal">
-                                <span>Personal Information</span>
-                                <h2>3</h2>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/book-online/#/confirm">
-                                <span>Confirm Booking</span>
-                                <h2>4</h2>
-                            </a>
-                        </li>
-                    </ul>
+        <!-- Menu Section -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab_info">
+                            <ul>
+                                <li ng-class="{active : currentState === '/home'}">
+                                    <a href="#/home">
+                                        <span>Select Dates</span>
+                                        <!--<i class="fa fa-check"></i>-->
+                                        <h2>1</h2>
+                                    </a>
+                                </li>
+                                <li ng-class="{active : currentState === '/suites'}">
+                                    <a href="#/suites">
+                                        <span>Suites & Rates</span>
+                                        <!--<i class="fa fa-check"></i>-->
+                                        <h2>2</h2>
+                                    </a>
+                                </li>
+                                <li ng-class="{active : currentState === '/personal'}">
+                                    <a href="#/personal">
+                                        <span>Personal Information</span>
+                                        <h2>3</h2>
+                                    </a>
+                                </li>
+                                <li ng-class="{active : currentState === '/confirm'}">
+                                    <a href="#/confirm">
+                                        <span>Confirm Booking</span>
+                                        <h2>4</h2>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- End Menu Section -->
-<section>
-    <div class="container">
-        <div class="row">
-            <div ng-view></div>
-        </div>
-    </div>
-</section>
+        </section>
+        <!-- End Menu Section -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div ng-view>
+                        <div ui-view="home"></div>
+                        <div ui-view="suites" ></div>
+                        <div ui-view="personal"></div>
+                        <div ui-view="confirm"></div>
+                        <div ui-view="thanks"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<footer>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="ft_logo">
-                    <a href="#"><img src="images/Nav_logo.svg" alt="" /></a>
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="ft_logo">
+                            <a href="#"><img src="images/Nav_logo.svg" alt="" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="card"><img src="images/visa.jpg" alt="" /></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="card"><img src="images/visa.jpg" alt="" /></div>
-            </div>
-        </div>
-    </div>
-</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script src="js/jquery.pickmeup.js"></script>
-<script src="js/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript" src="pages/home/home.js"></script>
-</body>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.pickmeup.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-sanitize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+        <script src="http://rco.tv/assets/components/angular-ui-router/release/stateEvents.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.6/angular-resource.min.js"></script>
+
+        <script src="js/app.main.js"></script>
+        <script src="js/app.controller.js"></script>
+        <script src="js/app.api-services.js"></script>
+        <script src="js/app.routes.js"></script>
+
+        <!-- Controllers -->
+        <script type="text/javascript" src="pages/home/home.js"></script>
+        <script type="text/javascript" src="pages/suites/rates.js"></script>
+        <script type="text/javascript" src="pages/personal/personal.js"></script>
+        <script type="text/javascript" src="pages/confirm/confirm.js"></script>
+        <script type="text/javascript" src="pages/thanks/thanks.js"></script>
+    </body>
 </html>

@@ -2,71 +2,82 @@
     <div class="book_data">
         <div class="book_title">
             <h3>BOOK YOUR STAY AT SILVAN SAFARI</h3>
-
         </div>
-        <div class="book_calendar">
-            <div class="calendar_top">
+        <form>
+            <div class="book_calendar">
+                <div class="calendar_top">
+                    <ul>
+                        <li class="arrival_data">
+                            <h5>ARRIVAL DATE</h5>
+                            <h1>01 <i class="fa fa-angle-down"></i></h1>
+                            <span>NOVEMBER 2017</span>
+                            <span>WEDNESDAY</span>
+                            <div class="mb_dt">Select date</div>
+                        </li>
+                        <li class="departure_data">
+                            <h5>DEPARTURE DATE</h5>
+                            <h1>03 <i class="fa fa-angle-down"></i></h1>
+                            <span>NOVEMBER 2017</span>
+                            <span>FRIDAY</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="calendar_bottom">
+                    <article>
+                        <div class="three-calendars"></div>
+                    </article>
+                </div>
+                <div class="mb_info">
+                    <h5>DEPARTURE</h5>
+                    <select class="form-control">
+                        <option>Select date</option>
+                        <option>Select date</option>
+                        <option>Select date</option>
+                        <option>Select date</option>
+                        <option>Select date</option>
+                    </select>
+                </div>
+            </div>
+            <div class="number_data">
                 <ul>
-                    <li class="arrival_data">
-                        <h5>ARRIVAL DATE</h5>
-                        <h1>01 <i class="fa fa-angle-down"></i></h1>
-                        <span>NOVEMBER 2017</span>
-                        <span>WEDNESDAY</span>
-                        <div class="mb_dt">Select date</div>
+                    <li>
+                        <div class="number_info">
+                            <div class="number_heading">NUMBER OF ADULTS</div>
+                            <div class="number_text">
+                                <button class="number_left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" min="0">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <div class="number_center">
+                                    <input type="number" class="form-control" ng-model="home.noOfAdults" value="1" placeholder="2">
+                                </div>
+                                <button class="number_right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                   <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                     </li>
-                    <li class="departure_data">
-                        <h5>DEPARTURE DATE</h5>
-                        <h1>03 <i class="fa fa-angle-down"></i></h1>
-                        <span>NOVEMBER 2017</span>
-                        <span>FRIDAY</span>
+                    <li>
+                        <div class="number_info">
+                            <div class="number_heading">NUMBER OF CHILDREN UNDER 12</div>
+                            <div class="number_text">
+                                <button class="number_left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" min="0">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <div class="number_center">
+                                    <input type="number" class="form-control" ng-model="home.noOfChilds" value="1" placeholder="2">
+                                </div>
+                                <button class="number_right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
-            <div class="calendar_bottom">
-                <article>
-                    <div class="three-calendars"></div>
-                </article>
+            <div class="availability">
+                <a href="#/suites">Check Availability</a>
             </div>
-            <div class="mb_info">
-                <h5>DEPARTURE</h5>
-                <select class="form-control">
-                    <option>Select date</option>
-                    <option>Select date</option>
-                    <option>Select date</option>
-                    <option>Select date</option>
-                    <option>Select date</option>
-                </select>
-            </div>
-        </div>
-        <div class="number_data">
-            <ul>
-                <li>
-                    <div class="number_info">
-                        <div class="number_heading">NUMBER OF ADULTS</div>
-                        <div class="number_text">
-                            <div class="number_left"><a><i class="fa fa-minus"></i></a></div>
-                            <div class="number_center"><input type="text" class="form-control" id="emailId"
-                                                              placeholder="2"></div>
-                            <div class="number_right"><a><i class="fa fa-plus"></i></a></div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="number_info">
-                        <div class="number_heading">NUMBER OF CHILDREN UNDER 12</div>
-                        <div class="number_text">
-                            <div class="number_left"><a><i class="fa fa-minus"></i></a></div>
-                            <div class="number_center"><input type="text" class="form-control" id="emailId2"
-                                                              placeholder="2"></div>
-                            <div class="number_right"><a><i class="fa fa-plus"></i></a></div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="availability">
-            <a href="suites_and_rates.html">Check Availability</a>
-        </div>
+        </form>
         <div class="bottom_data">
             <div class="bt_left">
                 <p>Best rate guarantee!</p>
