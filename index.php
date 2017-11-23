@@ -1,4 +1,4 @@
 <?php ?>
 <script>
-window.location.href = '#/home'
+window.location.href = 'index.html'
 </script>
