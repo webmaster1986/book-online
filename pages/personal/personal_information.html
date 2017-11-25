@@ -254,9 +254,9 @@
                 <div class="sidebar_left">
                     <div class="form-group">
                         <label>CHECK-IN</label>
-                        <div class='input-group date' id=''>
-                            <input style="border-width: 1px;" type='text' class="form-control"
-                                   placeholder="1 Nov 2017"/>
+                        <div class='input-group date'>
+                            <input style="border-width: 1px;" type='text' class="form-control checkIn"
+                                   placeholder="1 Nov 2017" ng-model="$storage.checkInDate"/>
 
                         </div>
                     </div>
@@ -265,9 +265,9 @@
                 <div class="sidebar_right">
                     <div class="form-group">
                         <label>CHECKOUT</label>
-                        <div class='input-group date' id=''>
-                            <input style="border-width: 1px;" type='text' class="form-control"
-                                   placeholder="3 Nov 2017"/>
+                        <div class='input-group'>
+                            <input style="border-width: 1px;" type='text' class="form-control checkOut"
+                                   placeholder="3 Nov 2017" ng-model="$storage.checkOutDate"/>
                         </div>
                     </div>
                 </div>
@@ -278,7 +278,7 @@
                     <div class="form-group">
                         <label>ADULTS</label>
                         <input style="border-width: 1px;" type='number' class="form-control"
-                               placeholder="2"/>
+                               placeholder="2" ng-model="$storage.totalAdults" />
                     </div>
                 </div>
                 <div class="sidebar_center"></div>
@@ -286,7 +286,7 @@
                     <div class="form-group">
                         <label>CHILDREN (u 12)</label>
                         <input style="border-width: 1px;" type='number' class="form-control"
-                               placeholder="0"/>
+                               placeholder="0" ng-model="$storage.totalChilds" />
                     </div>
                 </div>
             </div>

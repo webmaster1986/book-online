@@ -1,3 +1,6 @@
-app.controller('personalCtrl', function($scope) {
-    // Write Your dynamic code here
+app.controller('personalCtrl', function($scope, $localStorage, $state) {
+
+    $scope.$storage = $localStorage;
+
+    console.log($scope.$storage);
 });

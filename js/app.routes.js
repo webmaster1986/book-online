@@ -22,6 +22,7 @@
                     },
                     'home':{
                         templateUrl	: '/pages/home/home.html',
+                        controller: 'homeCtrl',
                     }
                 }
             })
@@ -69,5 +70,7 @@
                 }
             })
         $urlRouterProvider.otherwise("/home");
+
+        // $locationProvider.html5Mode(true);
     })
 })();
