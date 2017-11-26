@@ -4,8 +4,5 @@
     {
         $scope.$storage             = $localStorage;
         $scope.$storage.page        = {};
-        if($state.current.name === 'suites'){
-            $scope.suitesVisible = false;
-        }
     });
 })();

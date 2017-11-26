@@ -44,7 +44,7 @@
                 views	:{
                     'personal':{
                         templateUrl	: '/pages/personal/personal_information.html',
-                        controller  : 'personalCtrl'
+                        controller  : 'personalCtrl',
                     }
                 }
             })

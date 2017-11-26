@@ -256,7 +256,7 @@
                         <label>CHECK-IN</label>
                         <div class='input-group date'>
                             <input style="border-width: 1px;" type='text' class="form-control checkIn"
-                                   placeholder="1 Nov 2017" ng-model="$storage.checkInDate"/>
+                                   placeholder="1 Nov 2017" ng-model="$storage.arrivalDate"/>
 
                         </div>
                     </div>
@@ -267,7 +267,7 @@
                         <label>CHECKOUT</label>
                         <div class='input-group'>
                             <input style="border-width: 1px;" type='text' class="form-control checkOut"
-                                   placeholder="3 Nov 2017" ng-model="$storage.checkOutDate"/>
+                                   placeholder="3 Nov 2017" ng-model="$storage.departureDate"/>
                         </div>
                     </div>
                 </div>
@@ -292,36 +292,17 @@
             </div>
             <div class="sidebar_prices">
                 <ul>
-                    <li>
-                        <h4>Casia Suite <samp>(2 Nights)</samp></h4>
-                        <span>R76,000.00 <a href="#">X</a></span>
+                    <li ng-repeat="book in roomList" ng-if="bookRooms.indexOf(book.id) != -1">
+                        <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
+                        <span>R{{book.price}}<a ng-click="removeRoom(book.id)">X</a></span>
                     </li>
                     <li>
-                        <h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
-                        <span>R76,000.00 <a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <h4>JHB to Silvan <samp>(2)</samp></h4>
-                        <span>R9,000.00<a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <h4>Silvan to Cape Town <samp>(2)</samp></h4>
-                        <span>R9,000.00<a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <div>
-                            <h4>ROOM CHARGES </h4>
-                            <span>R152,000.00</span>
-                        </div>
-                        <div>
-                            <h4>ADDITIONAL SERVICES</h4>
-                            <span>R18,000.00</span>
-                        </div>
-
+                        <h4>ROOM CHARGES </h4>
+                        <span>R{{getTotalCost()}}</span>
                     </li>
                     <li class="total">
                         <h4>TOTAL</h4>
-                        <span>R170,000.00</span>
+                        <span>R{{getTotalCost()}}</span>
                     </li>
                     <li class="total_btn"><a href="#/confirm">REVIEW AND CONFIRM</a></li>
                 </ul>
@@ -329,37 +310,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript" src="js/jquery.min.js"></script>
-
-<script type="text/javascript" src="js/jquery.pickmeup.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/demo.js"></script>
-<script src="js/moment-with-locales.js"></script>
-<script src="js/bootstrap-datetimepicker.js"></script>
-<script src="js/jquery.bxslider.js"></script>
-
-<script type="text/javascript">
-  $(function () {
-    $('#datetimepicker1').datetimepicker();
-  });
-  $(function () {
-    $('#datetimepicker2').datetimepicker();
-  });
-  $(function () {
-    $('#datetimepicker3').datetimepicker();
-  });
-  $(function () {
-    $('#datetimepicker4').datetimepicker();
-  });
-
-  $(function () {
-    $('.bxslider').bxSlider({
-      mode: 'fade',
-      captions: true,
-      slideWidth: 600
-    });
-  });
-</script>
-</body>
-</html>

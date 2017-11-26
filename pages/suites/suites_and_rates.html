@@ -82,18 +82,17 @@
 		</div>
 		<div class="pro_list">
 			<ul>
-				<li>
+				<li ng-repeat="room in roomList">
 					<div class="pro_img">
 						<div class="bxslider">
 							<div><img src="images/img1.jpg" alt="" /></div>
 							<div><img src="images/img1.jpg" alt="" /></div>
 							<div><img src="images/img1.jpg" alt="" /></div>
 						</div>
-
 					</div>
 					<div class="pro_text">
 						<div class="pr_lt">
-							<h3>Kierie Klapper Suite</h3>
+							<h3>{{room.name}}</h3>
 							<ul>
 								<li>• 1 bedroom</li>
 								<li>• 1 en-suite bathroom</li>
@@ -104,10 +103,10 @@
 							<a href="#">MORE INFO > </a>
 						</div>
 						<div class="pr_rt">
-							<h2><span>From</span>R76,000.00</h2>
-							<p>Cost for 2 Nights</p>
+							<h2><span>From</span>R{{room.price}}.00</h2>
+							<p>Cost for {{room.duration}} Nights</p>
 							<samp>In high demand!</samp>
-							<a href="#">ADD ROOM</a>
+							<a ng-click="addRoom(room.id)">ADD ROOM</a>
 						</div>
 					</div>
 					<div class="mb_in">
@@ -123,146 +122,146 @@
 								<a href="#">MORE INFO > </a>
 							</li>
 							<li class="pr_rt">
-								<a href="#">ADD ROOM</a>
+								<a href="#" >ADD ROOM</a>
 							</li>
 						</ul>
 					</div>
 				</li>
-				<li>
-					<div class="pro_img">
-						<div class="bxslider">
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-						</div>
-					</div>
-					<div class="pro_text">
-						<div class="pr_lt">
-							<h3>Kierie Klapper Suite</h3>
-							<ul>
-								<li>• 1 bedroom</li>
-								<li>• 1 en-suite bathroom</li>
-								<li>• Private terrace</li>
-								<li>• 44 meters squared</li>
-								<li>• 2 Pax</li>
-							</ul>
-							<a href="#">MORE INFO > </a>
-						</div>
-						<div class="pr_rt">
-							<h2><span>From</span>R76,000.00</h2>
-							<p>Cost for 2 Nights</p>
-							<samp>In high demand!</samp>
-							<a href="#">ADD ROOM</a>
-						</div>
-					</div>
-					<div class="mb_in">
-						<ul>
-							<li class="pr_lt bd_bt">
-								<h3>Kierie Klapper Suite</h3>
-								<span>2 Pax</span>
-							</li>
-							<li class="pr_rt bd_bt">
-								<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>
-							</li>
-							<li class="pr_lt">
-								<a href="#">MORE INFO > </a>
-							</li>
-							<li class="pr_rt">
-								<a href="#">ADD ROOM</a>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<div class="pro_img">
-						<div class="bxslider">
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-						</div>
-					</div>
-					<div class="pro_text">
-						<div class="pr_lt">
-							<h3>Kierie Klapper Suite</h3>
-							<ul>
-								<li>• 1 bedroom</li>
-								<li>• 1 en-suite bathroom</li>
-								<li>• Private terrace</li>
-								<li>• 44 meters squared</li>
-								<li>• 2 Pax</li>
-							</ul>
-							<a href="#">MORE INFO > </a>
-						</div>
-						<div class="pr_rt">
-							<h2><span>From</span>R76,000.00</h2>
-							<p>Cost for 2 Nights</p>
-							<samp>In high demand!</samp>
-							<a href="#">ADD ROOM</a>
-						</div>
-					</div>
-					<div class="mb_in">
-						<ul>
-							<li class="pr_lt bd_bt">
-								<h3>Kierie Klapper Suite</h3>
-								<span>2 Pax</span>
-							</li>
-							<li class="pr_rt bd_bt">
-								<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>
-							</li>
-							<li class="pr_lt">
-								<a href="#">MORE INFO > </a>
-							</li>
-							<li class="pr_rt">
-								<a href="#">ADD ROOM</a>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li>
-					<div class="pro_img">
-						<div class="bxslider">
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-						</div>
-					</div>
-					<div class="pro_text">
-						<div class="pr_lt">
-							<h3>Kierie Klapper Suite</h3>
-							<ul>
-								<li>• 1 bedroom</li>
-								<li>• 1 en-suite bathroom</li>
-								<li>• Private terrace</li>
-								<li>• 44 meters squared</li>
-								<li>• 2 Pax</li>
-							</ul>
-							<a href="#">MORE INFO > </a>
-						</div>
-						<div class="pr_rt">
-							<h2><span>From</span>R76,000.00</h2>
-							<p>Cost for 2 Nights</p>
-							<samp>In high demand!</samp>
-							<a href="#">ADD ROOM</a>
-						</div>
-					</div>
-					<div class="mb_in">
-						<ul>
-							<li class="pr_lt bd_bt">
-								<h3>Kierie Klapper Suite</h3>
-								<span>2 Pax</span>
-							</li>
-							<li class="pr_rt bd_bt">
-								<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>
-							</li>
-							<li class="pr_lt">
-								<a href="#">MORE INFO > </a>
-							</li>
-							<li class="pr_rt">
-								<a href="#">ADD ROOM</a>
-							</li>
-						</ul>
-					</div>
-				</li>
+				<!--<li>-->
+					<!--<div class="pro_img">-->
+						<!--<div class="bxslider">-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="pro_text">-->
+						<!--<div class="pr_lt">-->
+							<!--<h3>Kierie Klapper Suite</h3>-->
+							<!--<ul>-->
+								<!--<li>• 1 bedroom</li>-->
+								<!--<li>• 1 en-suite bathroom</li>-->
+								<!--<li>• Private terrace</li>-->
+								<!--<li>• 44 meters squared</li>-->
+								<!--<li>• 2 Pax</li>-->
+							<!--</ul>-->
+							<!--<a href="#">MORE INFO > </a>-->
+						<!--</div>-->
+						<!--<div class="pr_rt">-->
+							<!--<h2><span>From</span>R76,000.00</h2>-->
+							<!--<p>Cost for 2 Nights</p>-->
+							<!--<samp>In high demand!</samp>-->
+							<!--<a href="#">ADD ROOM</a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="mb_in">-->
+						<!--<ul>-->
+							<!--<li class="pr_lt bd_bt">-->
+								<!--<h3>Kierie Klapper Suite</h3>-->
+								<!--<span>2 Pax</span>-->
+							<!--</li>-->
+							<!--<li class="pr_rt bd_bt">-->
+								<!--<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>-->
+							<!--</li>-->
+							<!--<li class="pr_lt">-->
+								<!--<a href="#">MORE INFO > </a>-->
+							<!--</li>-->
+							<!--<li class="pr_rt">-->
+								<!--<a href="#">ADD ROOM</a>-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<div class="pro_img">-->
+						<!--<div class="bxslider">-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="pro_text">-->
+						<!--<div class="pr_lt">-->
+							<!--<h3>Kierie Klapper Suite</h3>-->
+							<!--<ul>-->
+								<!--<li>• 1 bedroom</li>-->
+								<!--<li>• 1 en-suite bathroom</li>-->
+								<!--<li>• Private terrace</li>-->
+								<!--<li>• 44 meters squared</li>-->
+								<!--<li>• 2 Pax</li>-->
+							<!--</ul>-->
+							<!--<a href="#">MORE INFO > </a>-->
+						<!--</div>-->
+						<!--<div class="pr_rt">-->
+							<!--<h2><span>From</span>R76,000.00</h2>-->
+							<!--<p>Cost for 2 Nights</p>-->
+							<!--<samp>In high demand!</samp>-->
+							<!--<a href="#">ADD ROOM</a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="mb_in">-->
+						<!--<ul>-->
+							<!--<li class="pr_lt bd_bt">-->
+								<!--<h3>Kierie Klapper Suite</h3>-->
+								<!--<span>2 Pax</span>-->
+							<!--</li>-->
+							<!--<li class="pr_rt bd_bt">-->
+								<!--<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>-->
+							<!--</li>-->
+							<!--<li class="pr_lt">-->
+								<!--<a href="#">MORE INFO > </a>-->
+							<!--</li>-->
+							<!--<li class="pr_rt">-->
+								<!--<a href="#">ADD ROOM</a>-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<div class="pro_img">-->
+						<!--<div class="bxslider">-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+							<!--<div><img src="images/img1.jpg" alt="" /></div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="pro_text">-->
+						<!--<div class="pr_lt">-->
+							<!--<h3>Kierie Klapper Suite</h3>-->
+							<!--<ul>-->
+								<!--<li>• 1 bedroom</li>-->
+								<!--<li>• 1 en-suite bathroom</li>-->
+								<!--<li>• Private terrace</li>-->
+								<!--<li>• 44 meters squared</li>-->
+								<!--<li>• 2 Pax</li>-->
+							<!--</ul>-->
+							<!--<a href="#">MORE INFO > </a>-->
+						<!--</div>-->
+						<!--<div class="pr_rt">-->
+							<!--<h2><span>From</span>R76,000.00</h2>-->
+							<!--<p>Cost for 2 Nights</p>-->
+							<!--<samp>In high demand!</samp>-->
+							<!--<a href="#">ADD ROOM</a>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="mb_in">-->
+						<!--<ul>-->
+							<!--<li class="pr_lt bd_bt">-->
+								<!--<h3>Kierie Klapper Suite</h3>-->
+								<!--<span>2 Pax</span>-->
+							<!--</li>-->
+							<!--<li class="pr_rt bd_bt">-->
+								<!--<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>-->
+							<!--</li>-->
+							<!--<li class="pr_lt">-->
+								<!--<a href="#">MORE INFO > </a>-->
+							<!--</li>-->
+							<!--<li class="pr_rt">-->
+								<!--<a href="#">ADD ROOM</a>-->
+							<!--</li>-->
+						<!--</ul>-->
+					<!--</div>-->
+				<!--</li>-->
 			</ul>
 		</div>
 	</div>
@@ -315,23 +314,19 @@
 			</div>
 			<div class="sidebar_prices">
 				<ul>
-					<li>
-						<h4>Casia Suite <samp>(2 Nights)</samp></h4>
-						<span>R76,000.00 <a href="#">X</a></span>
-					</li>
-					<li>
-						<h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
-						<span>R76,000.00 <a href="#">X</a></span>
+					<li ng-repeat="book in roomList" ng-if="bookRooms.indexOf(book.id) != -1">
+						<h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
+						<span>R{{book.price}}<a ng-click="removeRoom(book.id)">X</a></span>
 					</li>
 					<li>
 						<h4>ROOM CHARGES </h4>
-						<span>R152,000.00</span>
+						<span>R{{getTotalCost()}}</span>
 					</li>
 					<li class="total">
 						<h4>TOTAL</h4>
-						<span>R152,000.00</span>
+						<span>R{{getTotalCost()}}</span>
 					</li>
-					<li class="total_btn"><a href="#" ng-click="makeReservation()">MAKE RESERVATION</a></li>
+					<li class="total_btn"><a ng-click="makeReservation()">MAKE RESERVATION</a></li>
 				</ul>
 			</div>
 		</div>
