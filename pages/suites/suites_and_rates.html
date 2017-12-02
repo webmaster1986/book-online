@@ -30,21 +30,23 @@
 					</div>
 				</div>
 			</div>
-			<div class="sidebar_row">
-				<div class="sidebar_left">
-					<div class="form-group">
-						<label>ADULTS</label>
-						<input style="border-width: 1px;" type='number' class="form-control" />
-					</div>
-				</div>
-				<div class="sidebar_center"></div>
-				<div class="sidebar_right">
-					<div class="form-group">
-						<label>CHILDREN (u 12)<a href="#"><i class="fa fa-question-circle"></i></a></label>
-						<input style="border-width: 1px;" type='number' class="form-control" />
-					</div>
-				</div>
-			</div>
+			<!-- No of adults & childs -->
+				<!--<div class="sidebar_row">-->
+					<!--<div class="sidebar_left">-->
+						<!--<div class="form-group">-->
+							<!--<label>ADULTS</label>-->
+							<!--<input style="border-width: 1px;" type='number' class="form-control" />-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="sidebar_center"></div>-->
+					<!--<div class="sidebar_right">-->
+						<!--<div class="form-group">-->
+							<!--<label>CHILDREN (u 12)<a href="#"><i class="fa fa-question-circle"></i></a></label>-->
+							<!--<input style="border-width: 1px;" type='number' class="form-control" />-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!-- End No of adults & childs -->
 			<div class="sidebar_prices">
 				<ul>
 					<li>
@@ -84,10 +86,9 @@
 			<ul>
 				<li ng-repeat="room in roomList">
 					<div class="pro_img">
-						<div class="bxslider">
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
-							<div><img src="images/img1.jpg" alt="" /></div>
+						<div class="bxslider" ng-repeat="images in room.fileEntries">
+							<div><img ng-if="images.url.length > 0" ng-src="{{ images.url }}" alt="" />
+								<img ng-if="images.url.length < 0" ng-src="images/img1.jpg" alt="" /></div>
 						</div>
 					</div>
 					<div class="pro_text">
@@ -105,18 +106,18 @@
 						<div class="pr_rt">
 							<h2><span>From</span>R{{room.price}}.00</h2>
 							<p>Cost for {{room.duration}} Nights</p>
-							<samp>In high demand!</samp>
+							<samp><i class="glyphicon glyphicon-users"></i>Pax</samp>
 							<a ng-click="addRoom(room.id)">ADD ROOM</a>
 						</div>
 					</div>
 					<div class="mb_in">
 						<ul>
 							<li class="pr_lt bd_bt">
-								<h3>Kierie Klapper Suite</h3>
+								<h3>{{room.name}}</h3>
 								<span>2 Pax</span>
 							</li>
 							<li class="pr_rt bd_bt">
-								<h2><span>From</span>R76,000.00<span>Cost for 2 Nights</span></h2>
+								<h2><span>From</span>R{{room.price}}.00<span>Cost for {{room.duration}} Nights</span></h2>
 							</li>
 							<li class="pr_lt">
 								<a href="#">MORE INFO > </a>
@@ -297,22 +298,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="sidebar_row">
-				<div class="sidebar_left">
-					<div class="form-group">
-						<label>ADULTS</label>
-						<input style="border-width: 1px;" type='number' ng-model="$storage.totalAdults" class="form-control" />
-					</div>
-				</div>
-				<div class="sidebar_center"></div>
-				<div class="sidebar_right">
-					<div class="form-group">
-						<label>CHILDREN (u 12)<a href="#"><i class="fa fa-question-circle"></i></a></label>
-						<input style="border-width: 1px;" type='number' ng-model="$storage.totalChilds" class="form-control" />
-					</div>
-				</div>
-			</div>
-			<div class="sidebar_prices">
+			<div class="sidebar_prices" ng-hide="true">
 				<ul>
 					<li ng-repeat="book in roomList" ng-if="bookRooms.indexOf(book.id) != -1">
 						<h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>

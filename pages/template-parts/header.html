@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="tab_info">
+                    <ul>
+                        <li ng-class="{active : currentState === '/home'}">
+                            <a href="#/home">
+                                <span>Select Dates</span>
+                                <!--<i class="fa fa-check"></i>-->
+                                <h2>1</h2>
+                            </a>
+                        </li>
+                        <li ng-class="{active : currentState === '/suites'}">
+                            <a href="#/suites">
+                                <span>Suites & Rates</span>
+                                <!--<i class="fa fa-check"></i>-->
+                                <h2>2</h2>
+                            </a>
+                        </li>
+                        <li ng-class="{active : currentState === '/personal'}">
+                            <a href="#/personal">
+                                <span>Personal Information</span>
+                                <h2>3</h2>
+                            </a>
+                        </li>
+                        <li ng-class="{active : currentState === '/confirm'}">
+                            <a href="#/confirm">
+                                <span>Confirm Booking</span>
+                                <h2>4</h2>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

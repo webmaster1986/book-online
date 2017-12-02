@@ -1,27 +1,19 @@
-app.controller('ratesCtrl', function($scope, $localStorage, $state, $timeout) {
+app.controller('ratesCtrl', function($scope, $localStorage, $state, $timeout, $http, API_URL) {
 
     $scope.$storage     = $localStorage;
     $scope.bookRooms    = [];
-    $scope.roomList =[
-        {
-            "id":1,
-            "name":"Casia Suite",
-            "price":"76000",
-            "duration":"2",
-        },{
-            "id":2,
-            "name":"Kierie Klapper",
-            "price":"78000",
-            "duration":"3",
-        },{
-            "id":3,
-            "name":"Kierie",
-            "price":"79000",
-            "duration":"4",
-        }
-    ];
+    $scope.confirmRoom  = false;
+    $scope.roomLists = function () {
+      $http.get(API_URL+ $scope.$storage.webKey +'/RoomTypes/WBEFull?format=json&isocode=de')
+        .then(function(res){
+            $scope.roomList = res.data.data;
+        }, function(){
+        });
+    };
+    $scope.roomLists();
     $localStorage.roomList = $scope.roomList;
     $scope.addRoom = function (roomId) {
+        debugger
         if ($scope.bookRooms.indexOf(roomId) === -1) {
           $scope.bookRooms.push(roomId);
         }
@@ -45,7 +37,7 @@ app.controller('ratesCtrl', function($scope, $localStorage, $state, $timeout) {
             });
         });
         return totalCost;
-    }
+    };
     $timeout(function () {
         $('.bxslider').bxSlider({
             mode: 'fade',

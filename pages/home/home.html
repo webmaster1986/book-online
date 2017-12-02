@@ -8,14 +8,14 @@
                 <div class="calendar_top">
                     <ul>
                         <li class="arrival_data">
-                            <h5>ARRIVAL DATE</h5>
+                            <h5>CHECK-IN</h5>
                             <h1>{{firstDate}} <i class="fa fa-angle-down"></i></h1>
                             <span>{{firstMonth}} {{firstYear}}</span>
                             <span >{{firstDay}}</span>
                             <div class="mb_dt">Select date</div>
                         </li>
                         <li class="departure_data">
-                            <h5>DEPARTURE DATE</h5>
+                            <h5>CHECKOUT</h5>
                             <h1>{{secondDate}} <i class="fa fa-angle-down"></i></h1>
                             <span>{{secondMonth}} {{secondYear}}</span>
                             <span>{{secondDay}}</span>
@@ -28,7 +28,7 @@
                     </article>
                 </div>
                 <div class="mb_info">
-                    <h5>DEPARTURE</h5>
+                    <h5>CHECK-IN</h5>
                     <select class="form-control">
                         <option>Select date</option>
                         <option>Select date</option>
@@ -38,46 +38,48 @@
                     </select>
                 </div>
             </div>
-            <div class="number_data">
-                <ul>
-                    <li>
-                        <div class="number_info">
-                            <div class="number_heading">NUMBER OF ADULTS</div>
-                            <div class="number_text">
-                                <!--onclick="this.parentNode.querySelector('input[type=number]').stepDown()"-->
-                                <button class="number_left" ng-click="decrementAdults()" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <div class="number_center">
-                                    <input type="number" class="form-control" ng-model="totalAdults" min="0" placeholder="0">
-                                </div>
-                                <!--onclick="this.parentNode.querySelector('input[type=number]').stepUp()"-->
-                                <button class="number_right" ng-click="incrementAdults()">
-                                   <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="number_info">
-                            <div class="number_heading">NUMBER OF CHILDREN UNDER 12</div>
-                            <div class="number_text">
-                                <!-- onclick="this.parentNode.querySelector('input[type=number]').stepDown()" -->
-                                <button class="number_left" ng-click="decrementChilds()">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <div class="number_center">
-                                    <input type="number" class="form-control" ng-model="totalChilds" min="0" placeholder="0">
-                                </div>
-                                <!--onclick="this.parentNode.querySelector('input[type=number]').stepUp()"-->
-                                <button class="number_right" ng-click="incrementChilds()">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <!-- No Of Childs & Adults -->
+            <!--<div class="number_data">-->
+                <!--<ul>-->
+                    <!--<li>-->
+                        <!--<div class="number_info">-->
+                            <!--<div class="number_heading">NUMBER OF ADULTS</div>-->
+                            <!--<div class="number_text">-->
+                                <!--&lt;!&ndash;onclick="this.parentNode.querySelector('input[type=number]').stepDown()"&ndash;&gt;-->
+                                <!--<button class="number_left" ng-click="decrementAdults()" >-->
+                                    <!--<i class="fa fa-minus"></i>-->
+                                <!--</button>-->
+                                <!--<div class="number_center">-->
+                                    <!--<input type="number" class="form-control" ng-model="totalAdults" min="0" placeholder="0">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;onclick="this.parentNode.querySelector('input[type=number]').stepUp()"&ndash;&gt;-->
+                                <!--<button class="number_right" ng-click="incrementAdults()">-->
+                                   <!--<i class="fa fa-plus"></i>-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="number_info">-->
+                            <!--<div class="number_heading">NUMBER OF CHILDREN UNDER 12</div>-->
+                            <!--<div class="number_text">-->
+                                <!--&lt;!&ndash; onclick="this.parentNode.querySelector('input[type=number]').stepDown()" &ndash;&gt;-->
+                                <!--<button class="number_left" ng-click="decrementChilds()">-->
+                                    <!--<i class="fa fa-minus"></i>-->
+                                <!--</button>-->
+                                <!--<div class="number_center">-->
+                                    <!--<input type="number" class="form-control" ng-model="totalChilds" min="0" placeholder="0">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;onclick="this.parentNode.querySelector('input[type=number]').stepUp()"&ndash;&gt;-->
+                                <!--<button class="number_right" ng-click="incrementChilds()">-->
+                                    <!--<i class="fa fa-plus"></i>-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!-- End No Of Childs & Adults -->
             <div class="availability">
                 <!--<a href="#/suites">Check Availability</a>-->
                 <a href="#" ng-click="checkAvailability()">Check Availability</a>

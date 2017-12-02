@@ -69,6 +69,16 @@
                     }
                 }
             })
+            .state('login', {
+                title   : 'Login',
+                url		: '/login',
+                views	:{
+                    'thanks':{
+                        templateUrl	: '/pages/thanks/login.html',
+                        controller  : 'loginCtrl'
+                    }
+                }
+            })
         $urlRouterProvider.otherwise("/home");
 
         // $locationProvider.html5Mode(true);

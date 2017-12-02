@@ -36,15 +36,17 @@ app.controller('homeCtrl', function($scope, $localStorage, $state) {
     });
 
     element[0].addEventListener('pickmeup-change', function (e) {
-        $scope.firstDate = e.detail.date[0].getDate();
-        $scope.firstDay = days[e.detail.date[0].getDay()];
-        $scope.firstYear = e.detail.date[0].getFullYear();
-        $scope.firstMonth = monthNames[e.detail.date[0].getMonth()];
+        $scope.firstDate    = e.detail.date;
+        $scope.firstDate    = e.detail.date[0].getDate();
+        $scope.firstDay     = days[e.detail.date[0].getDay()];
+        $scope.firstYear    = e.detail.date[0].getFullYear();
+        $scope.firstMonth   = monthNames[e.detail.date[0].getMonth()];
 
-        $scope.secondDate = e.detail.date[1].getDate();
-        $scope.secondDay = days[e.detail.date[1].getDay()];
-        $scope.secondYear = e.detail.date[1].getFullYear();
-        $scope.secondMonth = monthNames[e.detail.date[1].getMonth()];
+        $scope.secondDate   = e.detail.date;
+        $scope.secondDate   = e.detail.date[1].getDate();
+        $scope.secondDay    = days[e.detail.date[1].getDay()];
+        $scope.secondYear   = e.detail.date[1].getFullYear();
+        $scope.secondMonth  = monthNames[e.detail.date[1].getMonth()];
 
         $scope.date = e.detail.date;
         $scope.$apply();
@@ -62,6 +64,9 @@ app.controller('homeCtrl', function($scope, $localStorage, $state) {
         $scope.totalChilds--;
     };
     $scope.checkAvailability = function () {
+        if(!$scope.firstDate && !$scope.secondDate){
+
+        }
         if(angular.isArray($scope.date)){
             $scope.arrivalDate = $scope.date[0];
             $scope.departureDate = $scope.date[1];

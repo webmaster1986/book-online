@@ -5,4 +5,4 @@ var app = angular.module('bookOnline', [
     'ngStorage',
 ]);
 
-app.constant('API_URL', 'API_URL_HERE');
+app.constant('API_URL', 'https://connect.protel.net/WBE/1/');

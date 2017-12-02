@@ -6,44 +6,28 @@
         <div class="sidebar_data">
             <div class="sidebar_row">
                 <div class="edit"><a href="#">Edit</a></div>
-                <div class="sidebar_left">
-                    <div class="form-group">
-                        <label>CHECK-IN</label>
-                        <div class='input-group date' id=''>
-                            <input style="border-width: 1px;" type='text' class="form-control"
-                                   placeholder="1 Nov 2017"/>
+                <form name="personalForm" ng-submit="personalDetails(personalForm)" novalidate>
+                    <div class="sidebar_left">
+                        <div class="form-group">
+                            <label>CHECK-IN</label>
+                            <div class='input-group date' id=''>
+                                <input style="border-width: 1px;" type='text' class="form-control"
+                                       placeholder="1 Nov 2017"/>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
-                <div class="sidebar_right">
-                    <div class="form-group">
-                        <label>CHECKOUT</label>
-                        <div class='input-group date' id=''>
-                            <input style="border-width: 1px;" type='text' class="form-control"
-                                   placeholder="3 Nov 2017"/>
+                    <div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
+                    <div class="sidebar_right">
+                        <div class="form-group">
+                            <label>CHECKOUT</label>
+                            <div class='input-group date' id=''>
+                                <input style="border-width: 1px;" type='text' class="form-control"
+                                       placeholder="3 Nov 2017"/>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="sidebar_row">
-                <div class="edit"><a href="#">Edit</a></div>
-                <div class="sidebar_left">
-                    <div class="form-group">
-                        <label>ADULTS</label>
-                        <input style="border-width: 1px;" type='number' class="form-control"
-                               placeholder="2"/>
-                    </div>
-                </div>
-                <div class="sidebar_center"></div>
-                <div class="sidebar_right">
-                    <div class="form-group">
-                        <label>CHILDREN (u 12)</label>
-                        <input style="border-width: 1px;" type='number' class="form-control"
-                               placeholder="0"/>
-                    </div>
-                </div>
+                </form>
             </div>
             <div class="sidebar_prices">
                 <ul>
@@ -101,16 +85,28 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="Name">
+                            <div ng-messages="personalForm.name.$error">
+                                <div ng-message="required">Name is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.username" name="username" class="form-control" placeholder="Name">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="Surname">
+                            <div ng-messages="personalForm.surname.$error">
+                                <div ng-message="required">Surname is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.surname" name="surname" class="form-control" placeholder="Surname">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="E-mail address">
+                            <div ng-messages="personalForm.email.$error">
+                                <div ng-message="required">E-mail address is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.email" name="email" class="form-control" placeholder="E-mail address">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="Telephone number">
+                            <div ng-messages="personalForm.telephone.$error">
+                                <div ng-message="required">Telephone Number is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.telephone" name="telephone" class="form-control" placeholder="Telephone number">
                         </div>
 
                     </form>
@@ -122,16 +118,28 @@
                     <form>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="Street address">
+                            <div ng-messages="personalForm.street.$error">
+                                <div ng-message="required">Street address is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.street" name="street" class="form-control" placeholder="Street address">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="City">
+                            <div ng-messages="personalForm.city.$error">
+                                <div ng-message="required">City is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.city" name="city" class="form-control" placeholder="City">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="Postal code">
+                            <div ng-messages="personalForm.postal.$error">
+                                <div ng-message="required">Postal code is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.postal" name="postal" class="form-control" placeholder="Postal code">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" placeholder="State or province">
+                            <div ng-messages="personalForm.state.$error">
+                                <div ng-message="required">State or province is required.</div>
+                            </div>
+                            <input type="text" ng-model="personal.state" name="state" class="form-control" placeholder="State or province">
                         </div>
                         <div class="form-group">
                             <select class="form-control">
@@ -152,64 +160,6 @@
                 <div class="form_data">
                     <h3>Add guest information</h3>
                     <a href="#"><i class="fa fa-plus"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form_data">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h3>Payment Information</h3>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                            <form>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id=""
-                                           placeholder="Card holder's name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id=""
-                                           placeholder="Credit card number">
-                                </div>
-                                <div class="form-group">
-                                    <label>Expiry date</label>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <select class="form-control">
-                                                <option>Month</option>
-                                                <option>Month</option>
-                                                <option>Month</option>
-                                                <option>Month</option>
-                                                <option>Month</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <select class="form-control">
-                                                <option>Year</option>
-                                                <option>Year</option>
-                                                <option>Year</option>
-                                                <option>Year</option>
-                                                <option>Year</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="" placeholder="CVV">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-md-6 col-sm-12 col-xs-12">
-                            <div class="right_form">
-                                <img src="images/visa2.jpg" alt=""/>
-                                <p>Your credit card details are transferred only in encrypted form</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -269,24 +219,6 @@
                             <input style="border-width: 1px;" type='text' class="form-control checkOut"
                                    placeholder="3 Nov 2017" ng-model="$storage.departureDate"/>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="sidebar_row">
-                <div class="edit"><a href="#">Edit</a></div>
-                <div class="sidebar_left">
-                    <div class="form-group">
-                        <label>ADULTS</label>
-                        <input style="border-width: 1px;" type='number' class="form-control"
-                               placeholder="2" ng-model="$storage.totalAdults" />
-                    </div>
-                </div>
-                <div class="sidebar_center"></div>
-                <div class="sidebar_right">
-                    <div class="form-group">
-                        <label>CHILDREN (u 12)</label>
-                        <input style="border-width: 1px;" type='number' class="form-control"
-                               placeholder="0" ng-model="$storage.totalChilds" />
                     </div>
                 </div>
             </div>

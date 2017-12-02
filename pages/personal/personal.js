@@ -27,4 +27,7 @@ app.controller('personalCtrl', function($scope, $localStorage, $state) {
         });
         return totalCost;
     }
+    $scope.personalDetails - function () {
+      
+    }
 });
