@@ -1,52 +1,20 @@
 (function(){
   app.factory('$api', api)
     function api($window, $http, $q, $rootScope, $timeout, $state, $localStorage,  $httpParamSerializer, API_URL){
+
+      $rootScope.checkInDate = '';
       return {
-        login	        : login,
-        logout        : logout,
-        headerAuth    : headerAuth,
-        isAuthorized  : isAuthorized,
-        refreshToken  : refreshToken,
-        table         : table,
-        getRooms      : getRooms
+        getRooms      : getRooms,
+        getBookingDate  : getBookingDate,
+        get             : get,
       };
 
-      // function table(type, params)
-      // {
-      //   var deferred     = $q.defer();
-      //   var request      = $http.get(API_URL+'/api/'+type.replace(/([a-z](?=[A-Z]))/g, '$1-').toLowerCase()+'?'+$httpParamSerializer(params), this.headerAuth());
-      //
-      //   $localStorage.page.loader = true;
-      //
-      //   request.success( function( res ){
-      //     deferred.resolve({
-      //       raw         : res,
-      //       limitOptions: limitOptions,
-      //       data        : res.data,
-      //       query       : {
-      //         order   : res.meta.order,
-      //         page    : res.meta.pagination.current_page,
-      //         total   : res.meta.pagination.total,
-      //         limit   : params && params.limit == 0 ? 0 : res.meta.pagination.per_page,
-      //       }
-      //     });
-      //   });
-      //
-      //   request.error(function(res){
-      //     if(res && res.status_code == 401)
-      //     {
-      //       $localStorage.$reset();
-      //       $state.go('login');
-      //     }
-      //     else if($localStorage.page)
-      //     {
-      //       $localStorage.page.loader = false;
-      //     }
-      //     deferred.reject(res);
-      //   });
-      //
-      //   return deferred.promise;
-      // }
+      function get(type, id)
+      {
+        var request = $http.get(API_URL+ id + type);
+        return request;
+      }
+
 
       function getRooms(params)
       {
@@ -56,6 +24,11 @@
           }, function(){
             debugger
           })
+      }
+      function getBookingDate(params)
+      {
+        var request = $http.get(API_URL+ $localStorage.webKey +'/BookingDate?format=json');
+        return request;
       }
 
     }

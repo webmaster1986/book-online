@@ -1,83 +1,74 @@
-app.controller('homeCtrl', function($scope, $localStorage, $state) {
+app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $http, $api, $rootScope) {
 
-    $scope.$storage = $localStorage;
+  $scope.$storage = $localStorage;
+  $scope.bothDate = false;
 
-    var days        = [ "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    var monthNames  = [ "January", "February", "March", "April",
-                        "May", "June", "July", "August",
-                        "September", "October", "November", "December"  ];
-    var currentDate = new Date;
+  var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var monthNames = ["January", "February", "March", "April",
+    "May", "June", "July", "August",
+    "September", "October", "November", "December"];
 
-    var documentResult  = document.getElementsByClassName("three-calendars");
-    var element         = angular.element(documentResult);
 
-    $scope.date         = currentDate;
-    $scope.firstDate    = currentDate.getDate();
-    $scope.firstDay     = days[currentDate.getDay()];
-    $scope.firstYear    = currentDate.getFullYear();
-    $scope.firstMonth   = monthNames[currentDate.getMonth()];
+  $scope.$on('$viewContentLoaded', function(){
+    $scope.$emit('getBookingDate');
+  });
+  $scope.date = new Date($scope.$storage.bookDate);
+  console.log($scope.date);
+  var currentDate = new Date($scope.$storage.bookDate);
 
-    $scope.secondDate   = currentDate.getDate();
-    $scope.secondDay    = days[currentDate.getDay()];
-    $scope.secondYear   = currentDate.getFullYear();
-    $scope.secondMonth  = monthNames[currentDate.getMonth()];
+  var documentResult = document.getElementsByClassName("three-calendars");
+  var element = angular.element(documentResult);
 
-    $scope.totalAdults  = 0;
-    $scope.totalChilds  = 0;
+  $scope.firstDate    = $scope.date.getDate();
+  $scope.firstDay     = days[$scope.date.getDay()];
+  $scope.firstYear    = $scope.date.getFullYear();
+  $scope.firstMonth   = monthNames[$scope.date.getMonth()];
 
-    pickmeup('.three-calendars', {
-        flat      : true,
-        date      : [
-            new Date,
-            currentDate
-        ],
-        mode      : 'range',
-        calendars : 2
-    });
+  $scope.secondDate   = $scope.date.getDate();
+  $scope.secondDay    = days[$scope.date.getDay()];
+  $scope.secondYear   = $scope.date.getFullYear();
+  $scope.secondMonth  = monthNames[$scope.date.getMonth()];
 
-    element[0].addEventListener('pickmeup-change', function (e) {
-        $scope.firstDate    = e.detail.date;
-        $scope.firstDate    = e.detail.date[0].getDate();
-        $scope.firstDay     = days[e.detail.date[0].getDay()];
-        $scope.firstYear    = e.detail.date[0].getFullYear();
-        $scope.firstMonth   = monthNames[e.detail.date[0].getMonth()];
+  $scope.totalAdults = 0;
+  $scope.totalChilds = 0;
 
-        $scope.secondDate   = e.detail.date;
-        $scope.secondDate   = e.detail.date[1].getDate();
-        $scope.secondDay    = days[e.detail.date[1].getDay()];
-        $scope.secondYear   = e.detail.date[1].getFullYear();
-        $scope.secondMonth  = monthNames[e.detail.date[1].getMonth()];
+  pickmeup('.three-calendars', {
+    flat: true,
+    mode: 'range',
+    date:[
+      $scope.date
+    ],
+    calendars: 2,
+  });
 
-        $scope.date = e.detail.date;
-        $scope.$apply();
-    });
-    $scope.incrementAdults = function () {
-        $scope.totalAdults++;
-    };
-    $scope.incrementChilds = function () {
-        $scope.totalChilds++;
-    };
-    $scope.decrementAdults = function () {
-        $scope.totalAdults--;
-    };
-    $scope.decrementChilds = function () {
-        $scope.totalChilds--;
-    };
-    $scope.checkAvailability = function () {
-        if(!$scope.firstDate && !$scope.secondDate){
+  element[0].addEventListener('pickmeup-change', function (e) {
+    $scope.checkInDate = e.detail.date;
+    $scope.firstDate = e.detail.date[0].getDate();
+    $scope.firstDay = days[e.detail.date[0].getDay()];
+    $scope.firstYear = e.detail.date[0].getFullYear();
+    $scope.firstMonth = monthNames[e.detail.date[0].getMonth()];
 
-        }
-        if(angular.isArray($scope.date)){
-            $scope.arrivalDate = $scope.date[0];
-            $scope.departureDate = $scope.date[1];
-        }else {
-            $scope.arrivalDate = $scope.date;
-            $scope.departureDate = $scope.date;
-        }
-        $localStorage.totalChilds = $scope.totalChilds;
-        $localStorage.totalAdults = $scope.totalAdults;
-        $localStorage.arrivalDate = $scope.arrivalDate;
-        $localStorage.departureDate = $scope.departureDate;
-        $state.go('suites');
+    $scope.checkOutDate = e.detail.date;
+    $scope.secondDate = e.detail.date[1].getDate();
+    $scope.secondDay = days[e.detail.date[1].getDay()];
+    $scope.secondYear = e.detail.date[1].getFullYear();
+    $scope.secondMonth = monthNames[e.detail.date[1].getMonth()];
+
+    $scope.date = e.detail.date;
+    $scope.$apply();
+  });
+
+  $scope.submitHomeForm = function(form) {
+
+    if (angular.isArray($scope.date)) {
+      $scope.arrivalDate = $scope.date[0];
+      $scope.departureDate = $scope.date[1];
+    } else {
+      $scope.arrivalDate = $scope.date;
+      $scope.departureDate = $scope.date;
     }
+    $localStorage.arrivalDate = $scope.arrivalDate;
+    $localStorage.departureDate = $scope.departureDate;
+    $state.go('suites');
+  };
 });

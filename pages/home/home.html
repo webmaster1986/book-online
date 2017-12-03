@@ -3,7 +3,7 @@
         <div class="book_title">
             <h3>BOOK YOUR STAY AT SILVAN SAFARI</h3>
         </div>
-        <form>
+        <form name="homeForm" novalidate ng-submit="submitHomeForm(homeForm)">
             <div class="book_calendar">
                 <div class="calendar_top">
                     <ul>
@@ -24,8 +24,9 @@
                 </div>
                 <div class="calendar_bottom">
                     <article>
-                            <div class="three-calendars"></div>
+                            <div class="three-calendars" ng-model="homeDate"></div>
                     </article>
+                    <div ng-if="bothDate">* Please select a date before checking availibility </div>
                 </div>
                 <div class="mb_info">
                     <h5>CHECK-IN</h5>
@@ -38,51 +39,8 @@
                     </select>
                 </div>
             </div>
-            <!-- No Of Childs & Adults -->
-            <!--<div class="number_data">-->
-                <!--<ul>-->
-                    <!--<li>-->
-                        <!--<div class="number_info">-->
-                            <!--<div class="number_heading">NUMBER OF ADULTS</div>-->
-                            <!--<div class="number_text">-->
-                                <!--&lt;!&ndash;onclick="this.parentNode.querySelector('input[type=number]').stepDown()"&ndash;&gt;-->
-                                <!--<button class="number_left" ng-click="decrementAdults()" >-->
-                                    <!--<i class="fa fa-minus"></i>-->
-                                <!--</button>-->
-                                <!--<div class="number_center">-->
-                                    <!--<input type="number" class="form-control" ng-model="totalAdults" min="0" placeholder="0">-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash;onclick="this.parentNode.querySelector('input[type=number]').stepUp()"&ndash;&gt;-->
-                                <!--<button class="number_right" ng-click="incrementAdults()">-->
-                                   <!--<i class="fa fa-plus"></i>-->
-                                <!--</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<div class="number_info">-->
-                            <!--<div class="number_heading">NUMBER OF CHILDREN UNDER 12</div>-->
-                            <!--<div class="number_text">-->
-                                <!--&lt;!&ndash; onclick="this.parentNode.querySelector('input[type=number]').stepDown()" &ndash;&gt;-->
-                                <!--<button class="number_left" ng-click="decrementChilds()">-->
-                                    <!--<i class="fa fa-minus"></i>-->
-                                <!--</button>-->
-                                <!--<div class="number_center">-->
-                                    <!--<input type="number" class="form-control" ng-model="totalChilds" min="0" placeholder="0">-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash;onclick="this.parentNode.querySelector('input[type=number]').stepUp()"&ndash;&gt;-->
-                                <!--<button class="number_right" ng-click="incrementChilds()">-->
-                                    <!--<i class="fa fa-plus"></i>-->
-                                <!--</button>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!-- End No Of Childs & Adults -->
             <div class="availability">
-                <!--<a href="#/suites">Check Availability</a>-->
-                <a href="#" ng-click="checkAvailability()">Check Availability</a>
+                <button type="submit">Check Availability</button>
             </div>
         </form>
         <div class="bottom_data">
