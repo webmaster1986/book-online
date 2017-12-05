@@ -4,7 +4,7 @@
 
       $rootScope.checkInDate = '';
       return {
-        getRooms      : getRooms,
+        getRooms        : getRooms,
         getBookingDate  : getBookingDate,
         get             : get,
       };

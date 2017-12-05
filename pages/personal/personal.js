@@ -1,33 +1,90 @@
-app.controller('personalCtrl', function($scope, $localStorage, $state) {
-    $scope.$storage     = $localStorage;
-    $scope.bookRooms    = $localStorage.bookRooms || [];
-    $scope.roomList = $localStorage.roomList;
-    $scope.addRoom = function (roomId) {
-        if ($scope.bookRooms.indexOf(roomId) === -1) {
-            $scope.bookRooms.push(roomId);
-        }
-        $localStorage.bookRooms = $scope.bookRooms;
-    };
-    $scope.removeRoom = function (roomId) {
-        $scope.bookRooms.forEach(function(room,index){
-            if(room === roomId) {
-                $scope.bookRooms.splice(index, 1);
-            }
-        });
-        $localStorage.bookRooms = $scope.bookRooms;
-    };
-    $scope.getTotalCost = function () {
-        var totalCost = 0;
-        $scope.bookRooms.forEach(function(r){
-            $scope.roomList.forEach(function(room){
-                if (r === room.id) {
-                    totalCost += parseFloat(room.price);
-                }
-            });
-        });
-        return totalCost;
-    }
-    $scope.personalDetails - function () {
-      
-    }
+app.controller('personalCtrl', function ($scope, $localStorage, $state) {
+  $scope.$storage = $localStorage;
+  $localStorage.bookRooms = ($localStorage.bookRooms) ? $localStorage.bookRooms : [];
+
+  $scope.removeRoom = function (roomId) {
+    $localStorage.bookRooms.forEach(function (room, index) {
+      if (room.id === roomId) {
+        $localStorage.bookRooms.splice(index, 1);
+      }
+    });
+  };
+  $scope.getTotalCost = function () {
+    var totalCost = 0;
+    $localStorage.bookRooms.forEach(function (room) {
+      totalCost += parseFloat(room.rates[0].price.formatted);
+    });
+    return totalCost;
+  };
+
+  $scope.submitForm = function (form) {
+
+    angular.forEach(form.$error, function (field) {
+      angular.forEach(field, function(errorField){
+        errorField.$setTouched();
+      })
+    });
+
+    if(form.$invalid) return;
+    console.log($scope.personal);
+  };
+
+  $scope.back = function () {
+    $state.go('suites');
+  }
 });
+
+app.directive('addHtml', function ($compile) {
+  return {
+    restrict: 'AE',
+    link: function (scope, element, attrs) {
+      var html = '<div class="row">' +
+        '<div class="col-md-6 col-sm-12 col-xs-12">' +
+        '<div class="form_data">' +
+        '<h3>Guest Information</h3>' +
+        '<div class="form-group">' +
+        '<select class="form-control">' +
+        '<option>Mr.</option>' +
+        '<option>Ms.</option>' +
+        '<option>Mrs.</option>' +
+        '<option>Miss</option>' +
+        '</select>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<div ng-messages="personalForm.guestName.$error">' +
+        '<div ng-message="required">Guest Name is required.</div>' +
+        '</div>' +
+        '<input type="text" ng-model="personal.guestName" name="guestName" class="form-control" placeholder="Name" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<div ng-messages="personalForm.guestSurname.$error">' +
+        '<div ng-message="required">Guest Surname is required.</div>' +
+        '</div>' +
+        '<input type="text" ng-model="personal.guestSurname" name="guestSurname" class="form-control" placeholder="Surname" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<div ng-messages="personalForm.guestEmail.$error">' +
+        '<div ng-message="required">E-mail address is required.</div>' +
+        '</div>' +
+        '<input type="text" ng-model="personal.guestEmail" name="guestEmail" class="form-control" placeholder="E-mail address" required>' +
+        '</div>' +
+        '<div class="form-group">' +
+        '<div ng-messages="personalForm.guestTelephone.$error">' +
+        '<div ng-message="required">Telephone Number is required.</div>' +
+        '</div>' +
+        '<input type="text" ng-model="personal.guestTelephone" name="guestTelephone" class="form-control" placeholder="Telephone number" required>' +
+        '</div>' +
+        '</div>'+
+        '</div>'+
+        '</div>',
+        compiledElement = $compile(html)(scope);
+
+      element.on('click', function (event) {
+        var pageElement = angular.element(document.getElementById("guest_information"));
+        pageElement.empty();
+        pageElement.append(compiledElement);
+      })
+    }
+  }
+});
+

@@ -13,7 +13,6 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
     $scope.$emit('getBookingDate');
   });
   $scope.date = new Date($scope.$storage.bookDate);
-  console.log($scope.date);
   var currentDate = new Date($scope.$storage.bookDate);
 
   var documentResult = document.getElementsByClassName("three-calendars");
@@ -35,6 +34,7 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
   pickmeup('.three-calendars', {
     flat: true,
     mode: 'range',
+    format	: 'Y-m-d',
     date:[
       $scope.date
     ],
@@ -42,19 +42,22 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
   });
 
   element[0].addEventListener('pickmeup-change', function (e) {
-    $scope.checkInDate = e.detail.date;
+
+    $scope.checkInDate = e.detail.formatted_date;
+
     $scope.firstDate = e.detail.date[0].getDate();
     $scope.firstDay = days[e.detail.date[0].getDay()];
     $scope.firstYear = e.detail.date[0].getFullYear();
     $scope.firstMonth = monthNames[e.detail.date[0].getMonth()];
 
-    $scope.checkOutDate = e.detail.date;
+    $scope.checkOutDate = e.detail.formatted_date;
+
     $scope.secondDate = e.detail.date[1].getDate();
     $scope.secondDay = days[e.detail.date[1].getDay()];
     $scope.secondYear = e.detail.date[1].getFullYear();
     $scope.secondMonth = monthNames[e.detail.date[1].getMonth()];
 
-    $scope.date = e.detail.date;
+    $scope.date = e.detail.formatted_date;
     $scope.$apply();
   });
 

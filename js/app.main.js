@@ -3,6 +3,7 @@ var app = angular.module('bookOnline', [
     'ui.router',
     'ui.router.state.events',
     'ngStorage',
+    'ngMessages'
 ]);
 
 app.constant('API_URL', 'https://connect.protel.net/WBE/1/');

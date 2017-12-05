@@ -1,19 +1,18 @@
-<div class="col-md-4 col-sm-5 col-xs-12 mb_dt">
-    <div class="right_sidebar">
-        <div class="sidebar_heading">
-            <h2>RESERVARTION SUMMARY</h2>
-        </div>
-        <div class="sidebar_data">
-            <div class="sidebar_row">
-                <div class="edit"><a href="#">Edit</a></div>
-                <form name="personalForm" ng-submit="personalDetails(personalForm)" novalidate>
+<form name="personalForm" novalidate ng-submit="submitForm(personalForm)">
+    <div class="col-md-4 col-sm-5 col-xs-12 mb_dt">
+        <div class="right_sidebar">
+            <div class="sidebar_heading">
+                <h2>RESERVARTION SUMMARY</h2>
+            </div>
+            <div class="sidebar_data">
+                <div class="sidebar_row">
+                    <div class="edit"><a ng-click="back()">Edit</a></div>
                     <div class="sidebar_left">
                         <div class="form-group">
                             <label>CHECK-IN</label>
                             <div class='input-group date' id=''>
                                 <input style="border-width: 1px;" type='text' class="form-control"
                                        placeholder="1 Nov 2017"/>
-
                             </div>
                         </div>
                     </div>
@@ -27,119 +26,122 @@
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="sidebar_prices">
-                <ul>
-                    <li>
-                        <h4>Casia Suite <samp>(2 Nights)</samp></h4>
-                        <span>R76,000.00 <a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
-                        <span>R76,000.00 <a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <h4>JHB to Silvan <samp>(2)</samp></h4>
-                        <span>R9,000.00<a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <h4>Silvan to Cape Town <samp>(2)</samp></h4>
-                        <span>R9,000.00<a href="#">X</a></span>
-                    </li>
-                    <li>
-                        <div>
-                            <h4>ROOM CHARGES </h4>
-                            <span>R152,000.00</span>
-                        </div>
-                        <div>
-                            <h4>ADDITIONAL SERVICES</h4>
-                            <span>R18,000.00</span>
-                        </div>
+                </div>
+                <div class="sidebar_prices">
+                    <ul>
+                        <li>
+                            <h4>Casia Suite <samp>(2 Nights)</samp></h4>
+                            <span>R76,000.00 <a href="#">X</a></span>
+                        </li>
+                        <li>
+                            <h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
+                            <span>R76,000.00 <a href="#">X</a></span>
+                        </li>
+                        <li>
+                            <h4>JHB to Silvan <samp>(2)</samp></h4>
+                            <span>R9,000.00<a href="#">X</a></span>
+                        </li>
+                        <li>
+                            <h4>Silvan to Cape Town <samp>(2)</samp></h4>
+                            <span>R9,000.00<a href="#">X</a></span>
+                        </li>
+                        <li>
+                            <div>
+                                <h4>ROOM CHARGES </h4>
+                                <span>R152,000.00</span>
+                            </div>
+                            <div>
+                                <h4>ADDITIONAL SERVICES</h4>
+                                <span>R18,000.00</span>
+                            </div>
 
-                    </li>
-                    <li class="total">
-                        <h4>TOTAL</h4>
-                        <span>R170,000.00</span>
-                    </li>
-                    <li class="total_btn"><a href="#/confirm">REVIEW AND CONFIRM</a></li>
-                </ul>
+                        </li>
+                        <li class="total">
+                            <h4>TOTAL</h4>
+                            <span>R170,000.00</span>
+                        </li>
+                        <li class="total_btn"><a href="#/confirm">REVIEW AND CONFIRM</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="col-md-8 col-sm-7 col-xs-12">
-    <div class="form_info">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="form_data">
-                    <h3>Personal Information</h3>
-                    <form>
+    <div class="col-md-8 col-sm-7 col-xs-12">
+        <div class="form_info">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form_data">
+                        <h3>Personal Information</h3>
                         <div class="form-group">
                             <select class="form-control">
-                                <option>Title</option>
-                                <option>Title2</option>
-                                <option>Title3</option>
-                                <option>Title4</option>
-                                <option>Title5</option>
+                                <option>Mr.</option>
+                                <option>Ms.</option>
+                                <option>Mrs.</option>
+                                <option>Miss</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.name.$error">
+                            <div ng-messages="personalForm.username.$error" style="color:red">
                                 <div ng-message="required">Name is required.</div>
+                                <div ng-message="minlength">Username should have at least 6 characters.</div>
                             </div>
-                            <input type="text" ng-model="personal.username" name="username" class="form-control" placeholder="Name">
+                            <input type="text" ng-model="personal.username" name="username" class="form-control"
+                                   placeholder="Name" required>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.surname.$error">
+                            <div ng-messages="personalForm.surname.$error" style="color:red">
                                 <div ng-message="required">Surname is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.surname" name="surname" class="form-control" placeholder="Surname">
+                            <input type="text" ng-model="personal.surname" name="surname" class="form-control"
+                                   placeholder="Surname" required>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.email.$error">
+                            <div ng-messages="personalForm.email.$error" style="color:red">
                                 <div ng-message="required">E-mail address is required.</div>
+                                <div ng-message="email">E-mail address is not Valid.</div>
                             </div>
-                            <input type="text" ng-model="personal.email" name="email" class="form-control" placeholder="E-mail address">
+                            <input type="email" ng-model="personal.email" name="email" class="form-control"
+                                   placeholder="E-mail address" required>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.telephone.$error">
+                            <div ng-messages="personalForm.telephone.$error" style="color:red">
                                 <div ng-message="required">Telephone Number is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.telephone" name="telephone" class="form-control" placeholder="Telephone number">
+                            <input type="number" ng-model="personal.telephone" name="telephone" class="form-control"
+                                   placeholder="Telephone number" required>
                         </div>
-
-                    </form>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="form_data">
-                    <h3>Address</h3>
-                    <form>
-
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="form_data">
+                        <h3>Address</h3>
                         <div class="form-group">
-                            <div ng-messages="personalForm.street.$error">
+                            <div ng-messages="personalForm.street.$error" style="color:red">
                                 <div ng-message="required">Street address is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.street" name="street" class="form-control" placeholder="Street address">
+                            <input type="text" ng-model="personal.street" name="street" class="form-control"
+                                   placeholder="Street address" required>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.city.$error">
+                            <div ng-messages="personalForm.city.$error" style="color:red">
                                 <div ng-message="required">City is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.city" name="city" class="form-control" placeholder="City">
+                            <input type="text" ng-model="personal.city" name="city" class="form-control"
+                                   placeholder="City" required>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.postal.$error">
+                            <div ng-messages="personalForm.postal.$error" style="color:red">
                                 <div ng-message="required">Postal code is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.postal" name="postal" class="form-control" placeholder="Postal code">
+                            <input type="number" ng-model="personal.postal" name="postal" class="form-control"
+                                   placeholder="Postal code" required>
                         </div>
                         <div class="form-group">
-                            <div ng-messages="personalForm.state.$error">
+                            <div ng-messages="personalForm.state.$error" style="color:red">
                                 <div ng-message="required">State or province is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.state" name="state" class="form-control" placeholder="State or province">
+                            <input type="text" ng-model="personal.state" name="state" class="form-control"
+                                   placeholder="State or province" required>
                         </div>
                         <div class="form-group">
                             <select class="form-control">
@@ -150,95 +152,96 @@
                                 <option>Country</option>
                             </select>
                         </div>
-
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="form_data">
-                    <h3>Add guest information</h3>
-                    <a href="#"><i class="fa fa-plus"></i></a>
+            <div id="guest_information"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form_data">
+                        <h3>Guest Information</h3>
+                        <a add-html><i class="fa fa-plus"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="booking_policies">
-                    <h3>Booking Policies</h3>
-                    <p><strong>Confirmation and Payment:</strong> Provisional reservations will be kept for
-                        a maximum of 14 days (subject to
-                        room demand). * Written confirmation is needed within 14 days of reservation,
-                        failing which Ellerman
-                        House reserves the right to cancel the reservation. * 20% non-refundable deposit of
-                        accommodation is
-                        required on receipt of written confirmation.* The full balance of accommodation is
-                        payable six weeks prior
-                        to the date of arrival.</p>
-                    <p>
-                        <strong>Cancellations:</strong> All bookings confirmed in writing will be liable for
-                        20% of full accommodation if cancelled
-                        earlier than 31 days of arrival. *50% of full accommodation is payable if
-                        cancellations are made within 30
-                        days of arrival. * The full accommodation account is payable if cancellations are
-                        made within seven days of
-                        date of arrival. * In the event of premature departure the full duration of the
-                        stay, as originally booked and
-                        confirmed, will apply. *Refunds of deposits/prepayments for bookings are at the
-                        discretion of
-                        management and are dependent on the ability to re-let the room/s.</p>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="booking_policies">
+                        <h3>Booking Policies</h3>
+                        <p><strong>Confirmation and Payment:</strong> Provisional reservations will be kept for
+                            a maximum of 14 days (subject to
+                            room demand). * Written confirmation is needed within 14 days of reservation,
+                            failing which Ellerman
+                            House reserves the right to cancel the reservation. * 20% non-refundable deposit of
+                            accommodation is
+                            required on receipt of written confirmation.* The full balance of accommodation is
+                            payable six weeks prior
+                            to the date of arrival.</p>
+                        <p>
+                            <strong>Cancellations:</strong> All bookings confirmed in writing will be liable for
+                            20% of full accommodation if cancelled
+                            earlier than 31 days of arrival. *50% of full accommodation is payable if
+                            cancellations are made within 30
+                            days of arrival. * The full accommodation account is payable if cancellations are
+                            made within seven days of
+                            date of arrival. * In the event of premature departure the full duration of the
+                            stay, as originally booked and
+                            confirmed, will apply. *Refunds of deposits/prepayments for bookings are at the
+                            discretion of
+                            management and are dependent on the ability to re-let the room/s.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="col-md-4 col-sm-5 col-xs-12 full_dt">
-    <div class="right_sidebar">
-        <div class="sidebar_heading">
-            <h2>RESERVARTION SUMMARY</h2>
-        </div>
-        <div class="sidebar_data">
-            <div class="sidebar_row">
-                <div class="edit"><a href="#">Edit</a></div>
-                <div class="sidebar_left">
-                    <div class="form-group">
-                        <label>CHECK-IN</label>
-                        <div class='input-group date'>
-                            <input style="border-width: 1px;" type='text' class="form-control checkIn"
-                                   placeholder="1 Nov 2017" ng-model="$storage.arrivalDate"/>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
-                <div class="sidebar_right">
-                    <div class="form-group">
-                        <label>CHECKOUT</label>
-                        <div class='input-group'>
-                            <input style="border-width: 1px;" type='text' class="form-control checkOut"
-                                   placeholder="3 Nov 2017" ng-model="$storage.departureDate"/>
-                        </div>
-                    </div>
-                </div>
+    <div class="col-md-4 col-sm-5 col-xs-12 full_dt">
+        <div class="right_sidebar">
+            <div class="sidebar_heading">
+                <h2>RESERVARTION SUMMARY</h2>
             </div>
-            <div class="sidebar_prices">
-                <ul>
-                    <li ng-repeat="book in roomList" ng-if="bookRooms.indexOf(book.id) != -1">
-                        <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
-                        <span>R{{book.price}}<a ng-click="removeRoom(book.id)">X</a></span>
-                    </li>
-                    <li>
-                        <h4>ROOM CHARGES </h4>
-                        <span>R{{getTotalCost()}}</span>
-                    </li>
-                    <li class="total">
-                        <h4>TOTAL</h4>
-                        <span>R{{getTotalCost()}}</span>
-                    </li>
-                    <li class="total_btn"><a href="#/confirm">REVIEW AND CONFIRM</a></li>
-                </ul>
+            <div class="sidebar_data">
+                <div class="sidebar_row">
+                    <div class="edit"><a ng-click="back()">Edit</a></div>
+                    <div class="sidebar_left">
+                        <div class="form-group">
+                            <label>CHECK-IN</label>
+                            <div class='input-group date'>
+                                <input style="border-width: 1px;" type='text' class="form-control checkIn"
+                                       placeholder="1 Nov 2017" ng-model="$storage.arrivalDate"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
+                    <div class="sidebar_right">
+                        <div class="form-group">
+                            <label>CHECKOUT</label>
+                            <div class='input-group'>
+                                <input style="border-width: 1px;" type='text' class="form-control checkOut"
+                                       placeholder="3 Nov 2017" ng-model="$storage.departureDate"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_prices">
+                    <ul>
+                        <li ng-repeat="book in $storage.bookRooms track by $index">
+                            <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
+                            <span ng-repeat="rate in book.rates">R{{rate.price.formatted}}
+                                <a ng-click="removeRoom(book.id)">X</a></span>
+                        </li>
+                        <li>
+                            <h4>ROOM CHARGES </h4>
+                            <span>R{{getTotalCost()}}</span>
+                        </li>
+                        <li class="total">
+                            <h4>TOTAL</h4>
+                            <span>R{{getTotalCost()}}</span>
+                        </li>
+                        <button type="submit">MAKE RESERVATION</button>
+                        <li class="total_btn"><a ng-click="makeReservation()">MAKE RESERVATION</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
