@@ -925,6 +925,20 @@ footer {
     width: 100%;
     display: inline-block;
 }
+.total_btn button {
+    text-transform: uppercase;
+    color: #EAE7E0;
+    font-family: Montserrat;
+    font-size: 14px;
+    line-height: 40px;
+    text-align: center;
+    text-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    background: none;
+    border: none;
+}
 
 .product_heading p {
     width: 100%;
@@ -1155,6 +1169,19 @@ li.modify a, li.confirm a {
     text-align: center;
     width: 100%;
     display: inline-block;
+}
+li.confirm button {
+    color: #EAE7E0;
+    font-family: Montserrat;
+    font-size: 14px;
+    line-height: 60px;
+    text-align: center;
+    text-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    border: none;
+    background: none;
 }
 
 li.confirm {

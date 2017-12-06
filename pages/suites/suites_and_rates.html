@@ -126,7 +126,9 @@
 						</ul>
 					</div>
 				</li>
+                <li ng-if="!roomList" style="color: red"><h2> No Rooms are available </h2> </li>
 			</ul>
+
 		</div>
 	</div>
 </div>
@@ -141,7 +143,7 @@
 					<div class="form-group">
 						<label>CHECK-IN</label>
 						<div class='input-group date'>
-							<input type='text' class="form-control checkIn" ng-model="checkInDate" />
+							<input type='text' class="form-control checkIn" ng-model="checkInDate" ng-change="onChange()" />
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -161,7 +163,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="sidebar_prices" ng-if="$storage.bookRooms">
+			<div class="sidebar_prices" ng-if="$storage.bookRooms.length > 0">
 				<ul>
 					<li ng-repeat="book in $storage.bookRooms track by $index">
 						<h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>

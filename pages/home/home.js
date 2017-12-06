@@ -12,7 +12,7 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
   $scope.$on('$viewContentLoaded', function(){
     $scope.$emit('getBookingDate');
   });
-  $scope.date = new Date($scope.$storage.bookDate);
+  $scope.date = ($scope.$storage.bookDate)?new Date($scope.$storage.bookDate): new Date();
   var currentDate = new Date($scope.$storage.bookDate);
 
   var documentResult = document.getElementsByClassName("three-calendars");
