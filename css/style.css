@@ -251,13 +251,13 @@ ul.star {
 }
 
 li.arrival_data {
-    background-color: #EEECE6;
+    background-color: #272C31;
     padding: 35px;
     text-align: center;
 }
 
 li.arrival_data h5 {
-    color: #181A1B;
+    color: #8B8B8B;
     font-family: Montserrat;
     font-size: 14px;
     font-weight: 300;
@@ -283,7 +283,7 @@ li.arrival_data i {
 }
 
 li.arrival_data span {
-    color: #181A1B;
+    color: #8B8B8B;
     font-family: "Playfair Display";
     font-size: 14px;
     line-height: 19px;
@@ -1265,6 +1265,24 @@ li.confirm {
 }
 .pickmeup .pmu-instance .pmu-today {
     background-color: transparent;
+}
+.pickmeup .pmu-instance .pmu-disabled {
+    color: #b4b4b4;
+}
+
+li.departure_data:hover {
+    background-color: #EEECE6;
+    transition: all .5s ease-in;
+}
+li.departure_data.active {
+    background-color: #EEECE6;
+}
+li.arrival_data:hover {
+    background-color: #EEECE6;
+    transition: all .5s ease-in;
+}
+li.arrival_data.active {
+    background-color: #EEECE6;
 }
 @media screen and (max-width: 1200px) {
 

@@ -1,40 +1,41 @@
-app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $http, $api, $rootScope) {
+app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $http, $api, $rootScope, $filter) {
     
-    $scope.$storage = $localStorage;
+    $scope.$storage             = $localStorage;
+    debugger
+    $scope.$storage.arrivalDate = $filter('date')($scope.$storage.arrivalDate, "yyyy-MM-dd");
     
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var monthNames = ["January", "February", "March", "April",
-        "May", "June", "July", "August",
+    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August",
         "September", "October", "November", "December"];
-    
     
     $scope.$on('$viewContentLoaded', function () {
         $scope.$emit('getBookingDate');
     });
-    
-    $scope.checkInDate = ($localStorage.arrivalDate) ? new Date($scope.$storage.arrivalDate) : new Date();
-    $scope.checkOutDate = ($localStorage.departureDate) ? new Date($scope.$storage.departureDate) : new Date();
-    
-    var documentResult = document.getElementsByClassName("three-calendars");
-    var element = angular.element(documentResult);
-    
-    pickmeup('.three-calendars', {
+
+    $scope.checkInDate = ($scope.$storage.arrivalDate) ? new Date($scope.$storage.arrivalDate) : new Date();
+    $scope.checkInDate.setHours(0,0,0,0);
+    $scope.checkOutDate = ($scope.$storage.departureDate) ? new Date($scope.$storage.arrivalDate) : new Date();
+    $scope.checkOutDate.setDate($scope.checkInDate.getDate() + 1);
+    $scope.checkOutDate.setHours(0,0,0,0);
+
+    pickmeup('.checkInPicker', {
         flat: true,
-        mode: 'range',
+        mode: 'single',
         format: 'Y-m-d',
-        date: [
-            $scope.checkInDate,
-            $scope.checkOutDate
-        ],
-        render : function (date) {
-            if (date < new Date()) {
-                return {disabled : true, class_name : 'date-in-past'};
-            }
-            return {};
-        },
+        default_date : false,
+        min : $scope.checkInDate,
+        locale : 'en',
         calendars: 2,
     });
-    
+    pickmeup('.checkOutPicker', {
+        flat: true,
+        mode: 'single',
+        format: 'Y-m-d',
+        default_date : false,
+        min : $scope.checkOutDate,
+        locale : 'en',
+        calendars: 2,
+    });
     $scope.firstDate = ($scope.checkInDate.getDate() <= 9) ? '0' + $scope.checkInDate.getDate() : $scope.checkInDate.getDate();
     $scope.firstDay = days[$scope.checkInDate.getDay()];
     $scope.firstYear = $scope.checkInDate.getFullYear();
@@ -44,38 +45,56 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
     $scope.secondDay = days[$scope.checkOutDate.getDay()];
     $scope.secondYear = $scope.checkOutDate.getFullYear();
     $scope.secondMonth = monthNames[$scope.checkOutDate.getMonth()];
-    
-    $scope.totalAdults = 0;
-    $scope.totalChilds = 0;
-    
-    
-    element[0].addEventListener('pickmeup-change', function (e) {
-        $scope.checkInDate = e.detail.date[0];
-        
-        $scope.firstDate = ($scope.checkInDate.getDate() <= 9) ? '0' + $scope.checkInDate.getDate() : $scope.checkInDate.getDate();
-        $scope.firstDay = days[$scope.checkInDate.getDay()];
-        $scope.firstYear = $scope.checkInDate.getFullYear();
-        $scope.firstMonth = monthNames[$scope.checkInDate.getMonth()];
-        
-        $scope.checkOutDate = e.detail.date[1];
-        
-        $scope.secondDate = ($scope.checkOutDate.getDate() <= 9) ? '0' + $scope.checkOutDate.getDate() : $scope.checkOutDate.getDate();
-        $scope.secondDay = days[$scope.checkOutDate.getDay()];
-        $scope.secondYear = $scope.checkOutDate.getFullYear();
-        $scope.secondMonth = monthNames[e.detail.date[1].getMonth()];
-        
-        $scope.date = e.detail.formatted_date;
-        $scope.$apply();
+
+    $scope.showCheckInDiv = function () {
+      $('.calendar_bottom').css('display','none');
+      $('.calendar_bottom').toggle();
+      $('#checkOutDiv').hide();
+      $('#checkInDiv').show();
+      $('.departure_data').removeClass('active');
+      $('.arrival_data').addClass('active');
+    };
+    $scope.showCheckOutDiv = function () {
+      $('.calendar_bottom').css('display','none');
+      $('.calendar_bottom').toggle();
+      $('#checkInDiv').hide();
+      $('#checkOutDiv').show();
+      $('.arrival_data').removeClass('active');
+      $('.departure_data').addClass('active');
+    };
+
+    var checkInPickerResult = document.getElementsByClassName("checkInPicker");
+    var elementCheckIn = angular.element(checkInPickerResult);
+
+    var checkOutPickerResult = document.getElementsByClassName("checkOutPicker");
+    var elementCheckOut = angular.element(checkOutPickerResult);
+
+    elementCheckIn[0].addEventListener('pickmeup-change', function (e) {
+      $scope.checkInDate = e.detail.date;
+      $scope.firstDate = ($scope.checkInDate.getDate() <= 9) ? '0' + $scope.checkInDate.getDate() : $scope.checkInDate.getDate();
+      $scope.firstDay = days[$scope.checkInDate.getDay()];
+      $scope.firstYear = $scope.checkInDate.getFullYear();
+      $scope.firstMonth = monthNames[$scope.checkInDate.getMonth()];
+      $scope.$apply();
+      $('.arrival_data').removeClass('active');
+      $('.departure_data').addClass('active');
+      $('#checkInDiv').hide();
+      $('#checkOutDiv').show();
     });
-    
+
+    elementCheckOut[0].addEventListener('pickmeup-change', function (e) {
+      $scope.checkOutDate = e.detail.date;
+      $scope.secondDate = ($scope.checkOutDate.getDate() <= 9) ? '0' + $scope.checkOutDate.getDate() : $scope.checkOutDate.getDate();
+      $scope.secondDay = days[$scope.checkOutDate.getDay()];
+      $scope.secondYear = $scope.checkOutDate.getFullYear();
+      $scope.secondMonth = monthNames[$scope.checkOutDate.getMonth()];
+      $scope.$apply();
+      $('#checkOutDiv').hide();
+      $('.calendar_bottom').css('display','none');
+      $('.departure_data').removeClass('active');
+    });
+
     $scope.submitHomeForm = function () {
-        if (angular.isArray($scope.date)) {
-            $scope.checkInDate = $scope.date[0];
-            $scope.checkOutDate = $scope.date[1];
-        } else {
-            $scope.checkInDate = $scope.date;
-            $scope.checkOutDate = $scope.date;
-        }
         $localStorage.arrivalDate = $scope.checkInDate;
         $localStorage.departureDate = $scope.checkOutDate;
         $state.go('suites');

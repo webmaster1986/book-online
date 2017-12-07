@@ -7,24 +7,25 @@
             <div class="book_calendar">
                 <div class="calendar_top">
                     <ul>
-                        <li class="arrival_data">
+                        <li class="arrival_data" ng-click="showCheckInDiv()">
                             <h5>CHECK-IN</h5>
                             <h1>{{firstDate}} <i class="fa fa-angle-down"></i></h1>
-                            <span>{{firstMonth}} {{firstYear}}</span>
-                            <span >{{firstDay}}</span>
+                            <span>{{firstMonth | uppercase}} {{firstYear}}</span>
+                            <span >{{ firstDay | uppercase }}</span>
                             <div class="mb_dt">Select date</div>
                         </li>
-                        <li class="departure_data">
+                        <li class="departure_data" ng-click="showCheckOutDiv()">
                             <h5>CHECKOUT</h5>
                             <h1>{{secondDate}} <i class="fa fa-angle-down"></i></h1>
-                            <span>{{secondMonth}} {{secondYear}}</span>
-                            <span>{{secondDay}}</span>
+                            <span>{{secondMonth | uppercase}} {{secondYear}}</span>
+                            <span>{{ secondDay | uppercase }}</span>
                         </li>
                     </ul>
                 </div>
-                <div class="calendar_bottom">
+                <div class="calendar_bottom" style="display: none">
                     <article>
-                            <div class="three-calendars" ng-model="homeDate"></div>
+                            <div class="three-calendars checkInPicker" id="checkInDiv" style="display: none" ></div>
+                            <div class="three-calendars checkOutPicker" id="checkOutDiv" style="display: none"></div>
                     </article>
                     <div ng-if="bothDate">* Please select a date before checking availibility </div>
                 </div>

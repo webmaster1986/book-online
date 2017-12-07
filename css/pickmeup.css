@@ -146,13 +146,13 @@
     text-align: center;
 }
 
-.pmu-sunday {
-    color: #A76E57 !important;
-}
+/*.pmu-sunday {*/
+    /*color: #A76E57 !important;*/
+/*}*/
 
-.pmu-day-of-week div:last-child {
-    color: #A76E57 !important;
-}
+/*.pmu-day-of-week div:last-child {*/
+    /*color: #A76E57 !important;*/
+/*}*/
 
 .pickmeup .pmu-instance .pmu-day-of-week * {
     line-height: 1.8em;
