@@ -1,19 +1,18 @@
 app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $http, API_URL, $filter) {
 
   $scope.$storage = $localStorage;
+
   $scope.confirmRoom = false;
 
-  $timeout(function () {
-    $('.bxslider').bxSlider({
-      mode: 'fade',
-      captions: true,
-      slideWidth: 600
-    });
-  }, 2);
+  // Format Date according to api
+  $scope.apiArrivalDate = $filter('date')($scope.$storage.arrivalDate, "yyyy-MM-dd");
+  $scope.apiDepartureDate = $filter('date')($scope.$storage.departureDate, "yyyy-MM-dd");
 
+  $scope.checkInDate   =   $filter('date')($scope.$storage.arrivalDate, "dd-MM-yyyy");
+  $scope.checkOutDate =   $filter('date')($scope.$storage.departureDate, "dd-MM-yyyy");
 
   $scope.roomLists = function () {
-    $http.get(API_URL + $scope.$storage.webKey + '/rates?format=json&type=standardroom&countrooms=1&occupancy=2,0,0,0,0,0,0&from=' + $scope.$storage.arrivalDate + '&to=' + $scope.$storage.departureDate + '&isocode=en&IncludeBookableRooms=true')
+    $http.get(API_URL + $scope.$storage.webKey + '/rates?format=json&type=standardroom&countrooms=1&occupancy=2,0,0,0,0,0,0&from=' + $scope.apiArrivalDate + '&to=' + $scope.apiDepartureDate + '&isocode=en&IncludeBookableRooms=true')
       .then(function (res) {
         $localStorage.hotelInformation = res.data.data.instances[0];
         $scope.roomList = res.data.data.instances[0].roomTypes;
@@ -21,7 +20,27 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
         console.log('Error in Fetching Room types');
       });
   };
+  $scope.roomLists();
 
+  pickmeup('.checkIn', {
+    position: 'bottom',
+    format:'d-m-Y',
+    separator: ' ',
+    date:[
+      new Date($scope.$storage.arrivalDate)
+    ],
+    hide_on_select: true
+  });
+
+  pickmeup('.checkOut', {
+    position: 'bottom',
+    format:'d-m-Y',
+    separator: ' ',
+    date:[
+      new Date($scope.$storage.departureDate)
+    ],
+    hide_on_select: true
+  });
 
   var checkInResult = document.getElementsByClassName("checkIn");
   var checkIn = angular.element(checkInResult);
@@ -31,6 +50,7 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     if ($scope.checkInDate - $localStorage.arrivalDate !== 0) {
       $scope.$storage.arrivalDate = e.detail.formatted_date;
       $localStorage.arrivalDate = e.detail.date;
+      $scope.apiArrivalDate   =   $filter('date')(e.detail.date, "yyyy-MM-dd");
       $scope.roomLists();
     }
   });
@@ -43,32 +63,11 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     if ($scope.checkOutDate !== $localStorage.departureDate) {
       $scope.$storage.departureDate = e.detail.formatted_date;
       $localStorage.departureDate = e.detail.date;
+      $scope.apiDepartureDate =   $filter('date')(e.detail.date, "yyyy-MM-dd");
       $scope.roomLists();
     }
   });
 
-
-
-  pickmeup('.checkIn', {
-    position: 'bottom',
-    min: new Date(),
-    date:[
-      new Date($scope.$storage.arrivalDate)
-    ],
-    hide_on_select: true
-  });
-
-  pickmeup('.checkOut', {
-    position: 'bottom',
-    min: new Date(),
-    date:[
-      $scope.$storage.departureDate
-    ],
-    hide_on_select: true
-  });
-
-
-  $scope.roomLists();
 
   $localStorage.bookRooms = ($localStorage.bookRooms) ? $localStorage.bookRooms : [];
 
@@ -96,6 +95,26 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     });
     $localStorage.totalCost = totalCost;
     return totalCost;
+  };
+
+  $scope.$on('$viewContentLoaded', function(event) {
+    $timeout(function() {
+      $('.bxslider').bxSlider({
+        mode: 'fade',
+        captions: true,
+        slideWidth: 600
+      });
+    },0);
+  });
+  
+  $scope.moreInformation = function (roomId) {
+    $http.get(API_URL + $scope.$storage.webKey + '/RoomTypes/'+ roomId +'/WBEFull?format=json')
+      .then(function (res) {
+        $scope.roomTypeInfo = res.data.data;
+      }, function () {
+        console.log('Error in Fetching Room types');
+      });
+    $('#myModal').modal('show');
   };
 
   $scope.makeReservation = function (e) {

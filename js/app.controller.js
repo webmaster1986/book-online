@@ -12,7 +12,7 @@
             $api.get('/BookingDate?format=json', $scope.$storage.webKey).then(successCallback, errorCallback);
             
             function successCallback(response) {
-                if(response.success === 200){
+                if(response.status === 200){
                     $localStorage.bookDate = response.data.data[0].date;
                     if (typeof callback === 'function') callback(response.data.data[0].date);
                 } else {

@@ -4,7 +4,6 @@
 
       $rootScope.checkInDate = '';
       return {
-        getRooms        : getRooms,
         getBookingDate  : getBookingDate,
         get             : get,
       };
@@ -13,17 +12,6 @@
       {
         var request = $http.get(API_URL+ id + type);
         return request;
-      }
-
-
-      function getRooms(params)
-      {
-        $http.get(API_URL+ +'/RoomTypes/WBEFull?format=json&isocode=de')
-          .then(function(res){
-            debugger
-          }, function(){
-            debugger
-          })
       }
       function getBookingDate(params)
       {

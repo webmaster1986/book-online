@@ -1,187 +1,239 @@
-
 <div class="col-md-4 col-sm-5 col-xs-12 mb_dt">
-	<div class="right_sidebar">
-		<div class="sidebar_heading">
-			<h2>RESERVARTION SUMMARY</h2>
-		</div>
-		<div class="sidebar_data">
-			<div class="sidebar_row">
-				<div class="sidebar_left">
-					<div class="form-group">
-						<label>CHECK-IN</label>
-						<div class='input-group date' id='datetimepicker3'>
-							<input type='text' class="form-control" />
-							<span class="input-group-addon">
+    <div class="right_sidebar">
+        <div class="sidebar_heading">
+            <h2>RESERVARTION SUMMARY</h2>
+        </div>
+        <div class="sidebar_data">
+            <div class="sidebar_row">
+                <div class="sidebar_left">
+                    <div class="form-group">
+                        <label>CHECK-IN</label>
+                        <div class='input-group date' id='datetimepicker3'>
+                            <input type='text' class="form-control"/>
+                            <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
-						</div>
-					</div>
-				</div>
-				<div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
-				<div class="sidebar_right">
-					<div class="form-group">
-						<label>CHECKOUT</label>
-						<div class='input-group date' id='datetimepicker4'>
-							<input type='text' class="form-control" />
-							<span class="input-group-addon">
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
+                <div class="sidebar_right">
+                    <div class="form-group">
+                        <label>CHECKOUT</label>
+                        <div class='input-group date' id='datetimepicker4'>
+                            <input type='text' class="form-control"/>
+                            <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- No of adults & childs -->
-				<!--<div class="sidebar_row">-->
-					<!--<div class="sidebar_left">-->
-						<!--<div class="form-group">-->
-							<!--<label>ADULTS</label>-->
-							<!--<input style="border-width: 1px;" type='number' class="form-control" />-->
-						<!--</div>-->
-					<!--</div>-->
-					<!--<div class="sidebar_center"></div>-->
-					<!--<div class="sidebar_right">-->
-						<!--<div class="form-group">-->
-							<!--<label>CHILDREN (u 12)<a href="#"><i class="fa fa-question-circle"></i></a></label>-->
-							<!--<input style="border-width: 1px;" type='number' class="form-control" />-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!-- End No of adults & childs -->
-			<div class="sidebar_prices">
-				<ul>
-					<li>
-						<h4>Casia Suite <samp>(2 Nights)</samp></h4>
-						<span>R76,000.00 <a href="#">X</a></span>
-					</li>
-					<li>
-						<h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
-						<span>R76,000.00 <a href="#">X</a></span>
-					</li>
-					<li>
-						<h4>ROOM CHARGES </h4>
-						<span>R152,000.00</span>
-					</li>
-					<li class="total">
-						<h4>TOTAL</h4>
-						<span>R152,000.00</span>
-					</li>
-					<li class="total_btn"><a href="select_flights.html">MAKE RESERVATION</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- No of adults & childs -->
+            <!--<div class="sidebar_row">-->
+            <!--<div class="sidebar_left">-->
+            <!--<div class="form-group">-->
+            <!--<label>ADULTS</label>-->
+            <!--<input style="border-width: 1px;" type='number' class="form-control" />-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="sidebar_center"></div>-->
+            <!--<div class="sidebar_right">-->
+            <!--<div class="form-group">-->
+            <!--<label>CHILDREN (u 12)<a href="#"><i class="fa fa-question-circle"></i></a></label>-->
+            <!--<input style="border-width: 1px;" type='number' class="form-control" />-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!-- End No of adults & childs -->
+            <div class="sidebar_prices">
+                <ul>
+                    <li>
+                        <h4>Casia Suite <samp>(2 Nights)</samp></h4>
+                        <span>R76,000.00 <a href="#">X</a></span>
+                    </li>
+                    <li>
+                        <h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
+                        <span>R76,000.00 <a href="#">X</a></span>
+                    </li>
+                    <li>
+                        <h4>ROOM CHARGES </h4>
+                        <span>R152,000.00</span>
+                    </li>
+                    <li class="total">
+                        <h4>TOTAL</h4>
+                        <span>R152,000.00</span>
+                    </li>
+                    <li class="total_btn"><a href="select_flights.html">MAKE RESERVATION</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="col-md-8 col-sm-7 col-xs-12">
-	<div class="product_list">
-		<div class="product_heading">
-			<h2>Available Suites & Rates</h2>
-			<select class="form-control">
-				<option>ZAR (R)</option>
-				<option>ZAR (R)</option>
-				<option>ZAR (R)</option>
-				<option>ZAR (R)</option>
-			</select>
-		</div>
-		<div class="pro_list">
-			<ul>
-				<li ng-repeat="room in roomList | orderBy: room.sortOrder ">
-					<div class="pro_img">
-						<div class="bxslider">
-							<img ng-src="{{ room.image }}" alt="{{room.imageTitle}}" />
-							<img ng-src="{{ room.image }}" alt="{{room.imageTitle}}" />
-						</div>
-					</div>
-					<div class="pro_text">
-						<div class="pr_lt">
-							<h3>{{room.name}}</h3>
-							<ul>
-								<li>• 1 bedroom</li>
-								<li>• 1 en-suite bathroom</li>
-								<li>• Private terrace</li>
-								<li>• 44 meters squared</li>
-							</ul>
-							<a href="#">MORE INFO > </a>
-						</div>
-						<div class="pr_rt" ng-repeat="rate in room.rates">
-							<h2><span>From</span>R{{rate.price.formatted}}</h2>
-							<p>Cost for {{room.duration}} 2 Nights</p>
-							<samp><i class="fa fa-users"></i> 2 Pax</samp>
-							<a ng-click="addRoom(room)">ADD ROOM</a>
-						</div>
-					</div>
-					<div class="mb_in">
-						<ul>
-							<li class="pr_lt bd_bt">
-								<h3>{{room.name}}</h3>
-								<span>2 Pax</span>
-							</li>
-							<li class="pr_rt bd_bt">
-								<h2><span>From</span>R{{rate.price.formatted}}<span>Cost for {{room.duration}} Nights</span></h2>
-							</li>
-							<li class="pr_lt">
-								<a href="#">MORE INFO > </a>
-							</li>
-							<li class="pr_rt">
-								<a href="#" >ADD ROOM</a>
-							</li>
-						</ul>
-					</div>
-				</li>
-                <li ng-if="!roomList" style="color: red"><h2> No Rooms are available </h2> </li>
-			</ul>
+    <div class="product_list">
+        <div class="product_heading">
+            <h2>Available Suites & Rates</h2>
+            <select class="form-control">
+                <option>ZAR (R)</option>
+                <option>ZAR (R)</option>
+                <option>ZAR (R)</option>
+                <option>ZAR (R)</option>
+            </select>
+        </div>
+        <div class="pro_list">
+            <ul>
+                <li ng-repeat="room in roomList | orderBy: room.sortOrder ">
+                    <div class="pro_img">
+                        <div class="bxslider">
+                            <div><img src="{{room.image}}" alt="{{room.imageTitle}}"/></div>
+                        </div>
+                    </div>
+                    <div class="pro_text">
+                        <div class="pr_lt">
+                            <h3>{{room.name}}</h3>
+                            <ul>
+                                <li>• 1 bedroom</li>
+                                <li>• 1 en-suite bathroom</li>
+                                <li>• Private terrace</li>
+                                <li>• 44 meters squared</li>
+                            </ul>
+                            <a ng-click="moreInformation(room.id)" style="cursor:pointer">MORE INFO > </a>
+                        </div>
+                        <div class="pr_rt" ng-repeat="rate in room.rates">
+                            <h2><span>From</span>R{{rate.price.formatted}}</h2>
+                            <p>Cost for {{room.duration}} 2 Nights</p>
+                            <samp><i class="fa fa-users"></i> 2 Pax</samp>
+                            <a ng-click="addRoom(room)" style="cursor:pointer">ADD ROOM</a>
+                        </div>
+                    </div>
+                    <div class="mb_in">
+                        <ul>
+                            <li class="pr_lt bd_bt">
+                                <h3>{{room.name}}</h3>
+                                <span>2 Pax</span>
+                            </li>
+                            <li class="pr_rt bd_bt">
+                                <h2>
+                                    <span>From</span>R{{rate.price.formatted}}<span>Cost for {{room.duration}} Nights</span>
+                                </h2>
+                            </li>
+                            <li class="pr_lt">
+                                <a data-toggle="modal" data-target="#myModal" style="cursor:pointer">MORE INFO > </a>
+                            </li>
+                            <li class="pr_rt">
+                                <a href="#">ADD ROOM</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li ng-if="!roomList" style="color: red"><h2> No Rooms are available </h2></li>
+            </ul>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 <div class="col-md-4 col-sm-5 col-xs-12 full_dt">
-	<div class="right_sidebar">
-		<div class="sidebar_heading">
-			<h2>RESERVARTION SUMMARY</h2>
-		</div>
-		<div class="sidebar_data">
-			<div class="sidebar_row">
-				<div class="sidebar_left">
-					<div class="form-group">
-						<label>CHECK-IN</label>
-						<div class='input-group date'>
-							<input type='text' class="form-control checkIn" ng-model="checkInDate" ng-change="onChange()" />
-							<span class="input-group-addon">
+    <div class="right_sidebar">
+        <div class="sidebar_heading">
+            <h2>RESERVARTION SUMMARY</h2>
+        </div>
+        <div class="sidebar_data">
+            <div class="sidebar_row">
+                <div class="sidebar_left">
+                    <div class="form-group">
+                        <label>CHECK-IN</label>
+                        <div class='input-group date'>
+                            <input type='text' class="form-control checkIn" ng-model="checkInDate"
+                                   ng-change="onChange()"/>
+                            <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
-						</div>
-					</div>
-				</div>
-				<div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
-				<div class="sidebar_right">
-					<div class="form-group">
-						<label>CHECKOUT</label>
-						<div class='input-group date'>
-							<input type='text' class="form-control checkOut" ng-model="checkOutDate" />
-							<span class="input-group-addon">
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_center"><i class="fa fa-angle-right"></i></div>
+                <div class="sidebar_right">
+                    <div class="form-group">
+                        <label>CHECKOUT</label>
+                        <div class='input-group date'>
+                            <input type='text' class="form-control checkOut" ng-model="checkOutDate"/>
+                            <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="sidebar_prices" ng-if="$storage.bookRooms.length > 0">
-				<ul>
-					<li ng-repeat="book in $storage.bookRooms track by $index">
-						<h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
-						<span ng-repeat="rate in book.rates">R{{rate.price.formatted}}   <a ng-click="removeRoom(book.id)">X</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar_prices" ng-if="$storage.bookRooms.length > 0">
+                <ul>
+                    <li ng-repeat="book in $storage.bookRooms track by $index">
+                        <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
+                        <span ng-repeat="rate in book.rates">R{{rate.price.formatted}}   <a
+                                ng-click="removeRoom(book.id)" style="cursor:pointer">X</a></span>
 
-					</li>
-					<li>
-						<h4>ROOM CHARGES </h4>
-						<span>R{{getTotalCost()}}</span>
-					</li>
-					<li class="total">
-						<h4>TOTAL</h4>
-						<span>R{{getTotalCost()}}</span>
-					</li>
-					<li class="total_btn"><a ng-click="makeReservation()">MAKE RESERVATION</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+                    </li>
+                    <li>
+                        <h4>ROOM CHARGES </h4>
+                        <span>R{{getTotalCost()}}</span>
+                    </li>
+                    <li class="total">
+                        <h4>TOTAL</h4>
+                        <span>R{{getTotalCost()}}</span>
+                    </li>
+                    <li class="total_btn"><a ng-click="makeReservation()" style="cursor:pointer">MAKE RESERVATION</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <div class="popup_dt">
+                    <div class="popup_left">
+                        <img src="images/img1.jpg" alt=""/>
+                        <p ng-bind="roomTypeInfo.longDesc"></p>
+                    </div>
+                    <div class="popup_right">
+                        <h1 ng-bind="roomTypeInfo.name"></h1>
+                        <h2>Room details</h2>
+                        <ul>
+                            <li>1 bedroom</li>
+                            <li>Satellite TV</li>
+                            <li>1 en-suite bathroom</li>
+                            <li>Air Conditioning</li>
+                            <li>Private terrace</li>
+                            <li>Heated floors</li>
+                            <li>Seaside view</li>
+                            <li>Uncapped WiFi</li>
+                            <li>44 square meters</li>
+                        </ul>
+                        <div class="rate_inclusions">
+                            <h2>Rate inclusions</h2>
+                            <ul>
+                                <li>Three gourmet meals per day</li>
+                                <li>All drinks</li>
+                                <li>Laundry</li>
+                                <li>Two game drives daily with a FGASA qualified guide</li>
+                                <li>Walking safaris</li>
+                                <li>Game-drive refreshments and snacks</li>
+                                <li>Return road transfers between the airstrip & the lodge</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

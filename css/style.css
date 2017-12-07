@@ -1566,3 +1566,155 @@ li.arrival_data.active {
     }
 
 }
+
+
+/* Css For Modal Popup */
+
+.popup_bg {
+    background: #202224;
+}
+
+#myModal .modal-dialog {
+    width: 1000px;
+}
+
+#myModal .modal-header {
+    padding: 0;
+    border-bottom: 0;
+}
+
+#myModal .modal-content:after {
+    content: "";
+    position: absolute;
+    background-color: #202224;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    top: 0;
+}
+
+#myModal .modal-content {
+    width: 100%;
+    display: inline-block;
+    float: left;
+}
+
+.popup_dt {
+    width: 100%;
+    display: inline-block;
+    float: left;
+}
+
+.popup_left {
+    width: 50%;
+    float: left;
+    padding: 0 15px 35px 0;
+}
+
+#myModal .modal-body {
+    width: 100%;
+    display: inline-block;
+}
+
+.popup_left img {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.popup_left p {
+    color: #828282;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+}
+
+.popup_right {
+    width: 50%;
+    float: left;
+    padding: 45px;
+    position: relative;
+    z-index: 99999;
+}
+
+.close {
+    float: right;
+    font-size: 31px;
+    line-height: 1;
+    color: #828282 !important;
+    text-shadow: none;
+    filter: alpha(opacity=20);
+    opacity: 1;
+    position: absolute;
+    z-index: 99999999;
+    right: 20px;
+    top: 10px;
+}
+
+.popup_right h1 {
+    color: #EAE7E0;
+    font-family: "Playfair Display";
+    font-size: 26px;
+    font-style: italic;
+    line-height: 43px;
+}
+
+.popup_right h2 {
+    color: #6F6F6F;
+    font-family: "Playfair Display";
+    font-size: 20px;
+    font-style: italic;
+    line-height: 43px;
+}
+
+.popup_right li {
+    width: 50%;
+    color: #828282;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 24px;
+    float: left;
+}
+
+.popup_right ul {
+    list-style: inherit;
+    padding-left: 19px;
+    width: 100%;
+    display: inline-block;
+}
+
+.rate_inclusions {
+    border-top: 1px solid #828282;
+    width: 100%;
+    display: inline-block;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.rate_inclusions li {
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    #myModal .modal-dialog {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .popup_left, .popup_right {
+        width: 100%;
+        position: relative;
+        z-index: 999;
+    }
+
+    #myModal .modal-content:after {
+        width: 100%;
+    }
+
+    .popup_right li {
+        width: 100%;
+    }
+}
