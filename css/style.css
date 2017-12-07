@@ -1263,7 +1263,9 @@ li.confirm {
     padding: 20px 45px;
     display: inline-block;
 }
-
+.pickmeup .pmu-instance .pmu-today {
+    background-color: transparent;
+}
 @media screen and (max-width: 1200px) {
 
     .right_data {
