@@ -3,14 +3,21 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     $scope.$storage = $localStorage;
     
     $scope.confirmRoom = false;
-    
+
+    $scope.$storage.arrivalDate = moment($scope.$storage.arrivalDate);
+    $scope.$storage.departureDate = moment($scope.$storage.departureDate);
+    $scope.$storage.bookDate = moment($scope.$storage.bookDate);
+
     // Format Date according to api
-    $scope.apiArrivalDate = $filter('date')($scope.$storage.arrivalDate, "yyyy-MM-dd");
-    $scope.apiDepartureDate = $filter('date')($scope.$storage.departureDate, "yyyy-MM-dd");
+    $scope.apiArrivalDate   = $scope.$storage.arrivalDate.format('YYYY-MM-D');
+    $scope.apiDepartureDate = $scope.$storage.departureDate.format('YYYY-MM-D');
     
-    $scope.checkInDate = $filter('date')($scope.$storage.arrivalDate, "dd MMM yyyy");
-    $scope.checkOutDate = $filter('date')($scope.$storage.departureDate, "dd MMM yyyy");
-    
+    $scope.checkInDate  = $scope.$storage.arrivalDate.format('D-MM-YYYY');
+    $scope.checkOutDate = $scope.$storage.departureDate.format('D-MM-YYYY');
+
+    $scope.checkInPicker = $scope.$storage.arrivalDate.format('D MMM YYYY');
+    $scope.checkOutPicker = $scope.$storage.departureDate.format('D MMM YYYY');
+
     $scope.roomLists = function () {
         $http.get(API_URL + $scope.$storage.webKey + '/rates?format=json&type=standardroom&countrooms=1&occupancy=2,0,0,0,0,0,0&from=' + $scope.apiArrivalDate + '&to=' + $scope.apiDepartureDate + '&isocode=en&IncludeBookableRooms=true')
             .then(function (res) {
@@ -21,40 +28,53 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
             });
     };
     $scope.roomLists();
-    
-    pickmeup('.checkIn', {
-        position: 'bottom',
-        format: 'd-m-Y',
-        min: new Date($localStorage.bookDate),
-        separator: ' ',
-        date: [
-            new Date($scope.$storage.arrivalDate)
-        ],
-        hide_on_select: true
-    });
-    
-    pickmeup('.checkOut', {
-        position: 'bottom',
-        format: 'd-m-Y',
-        separator: ' ',
-        min: new Date($scope.$storage.arrivalDate),
-        date: [
-            new Date($scope.$storage.departureDate)
-        ],
-        hide_on_select: true
-    });
+  pickmeup('.checkIn', {
+    position: 'bottom',
+    format: 'd-m-Y',
+    default_date: false,
+    hide_on_select: true,
+    render: function(date) {
+      if($scope.$storage.arrivalDate.isSame(moment(date))){
+        return {
+          selected   : true,
+        }
+      } else {
+        return {
+          selected   : false,
+        }
+      }
+    }
+  });
+  pickmeup('.checkOut', {
+    position: 'bottom',
+    default_date: false,
+    format: 'd-m-Y',
+    hide_on_select: true,
+    render: function(date) {
+      if($scope.$storage.departureDate.isSame(moment(date))){
+        return {
+          selected   : true,
+        }
+      } else {
+        return {
+          selected   : false,
+        }
+      }
+    }
+  });
     
     var checkInResult = document.getElementsByClassName("checkIn");
     var checkIn = angular.element(checkInResult);
     
     checkIn[0].addEventListener('pickmeup-change', function (e) {
-        $scope.checkInDate = $filter('date')(e.detail.date, "dd MMM yyyy");
-        // $scope.checkInDate = e.detail.formatted_date;
-        if (e.detail.formatted_date - $localStorage.arrivalDate !== 0) {
-            $scope.$storage.arrivalDate = e.detail.formatted_date;
-            $localStorage.arrivalDate = e.detail.date;
-            $scope.apiArrivalDate = $filter('date')(e.detail.date, "yyyy-MM-dd");
-            $scope.roomLists();
+      $scope.checkInDate = moment(e.detail.date);
+      $scope.checkInPicker = $scope.checkInDate.format('D MMM YYYY');
+        if(!$scope.checkInDate.isSame($scope.$storage.arrivalDate)){
+          $scope.$storage.arrivalDate = $scope.checkInDate;
+          $localStorage.arrivalDate = $scope.checkInDate;
+          $scope.apiArrivalDate = $scope.checkInDate.format('YYYY-MM-D');
+          $localStorage.bookRooms = [];
+          $scope.roomLists();
         }
     });
     
@@ -62,12 +82,14 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     var checkOut = angular.element(checkOutResult);
     
     checkOut[0].addEventListener('pickmeup-change', function (e) {
-        $scope.checkOutDate = $filter('date')(e.detail.date, "dd MMM yyyy");
-        if ($scope.checkOutDate !== $localStorage.departureDate) {
-            $scope.$storage.departureDate = e.detail.formatted_date;
-            $localStorage.departureDate = e.detail.date;
-            $scope.apiDepartureDate = $filter('date')(e.detail.date, "yyyy-MM-dd");
-            $scope.roomLists();
+        $scope.checkOutDate = moment(e.detail.date);
+        $scope.checkOutPicker = $scope.checkOutDate.format('D MMM YYYY');
+        if(!$scope.checkOutDate.isSame($scope.$storage.departureDate)) {
+          $scope.$storage.departureDate = $scope.checkOutDate;
+          $localStorage.departureDate = $scope.checkOutDate;
+          $scope.apiDepartureDate = $scope.checkOutDate.format('YYYY-MM-D');
+          $localStorage.bookRooms = [];
+          $scope.roomLists();
         }
     });
     
