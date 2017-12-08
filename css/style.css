@@ -1284,6 +1284,12 @@ li.arrival_data:hover {
 li.arrival_data.active {
     background-color: #EEECE6;
 }
+.pickmeup {
+    background: #FFF;
+    border-radius: 0.4em;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
 @media screen and (max-width: 1200px) {
 
     .right_data {

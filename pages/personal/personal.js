@@ -1,6 +1,9 @@
-app.controller('personalCtrl', function ($scope, $localStorage, $state) {
+app.controller('personalCtrl', function ($scope, $localStorage, $state, $filter) {
     $scope.$storage = $localStorage;
     $localStorage.bookRooms = ($localStorage.bookRooms) ? $localStorage.bookRooms : [];
+    
+    $scope.checkInDate   =   $filter('date')($scope.$storage.arrivalDate, "dd MMM yyyy");
+    $scope.checkOutDate =   $filter('date')($scope.$storage.departureDate, "dd MMM yyyy");
     
     $scope.removeRoom = function (roomId) {
         $localStorage.bookRooms.forEach(function (room, index) {
