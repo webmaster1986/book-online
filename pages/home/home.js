@@ -1,7 +1,8 @@
 app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $http, $api, $rootScope, $filter) {
     
     $scope.$storage             = $localStorage;
-    $scope.$storage.arrivalDate = $filter('date')($scope.$storage.arrivalDate, "yyyy-MM-dd");
+    // $scope.$storage.arrivalDate = $filter('date')($scope.$storage.arrivalDate, "yyyy-MM-dd");
+   
     
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August",
@@ -10,40 +11,40 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
     $scope.$on('$viewContentLoaded', function () {
         $scope.$emit('getBookingDate');
     });
-
-    $scope.checkInDate = ($scope.$storage.arrivalDate) ? new Date($scope.$storage.arrivalDate) : new Date();
-    $scope.checkInDate.setHours(0,0,0,0);
-    $scope.checkOutDate = ($scope.$storage.departureDate) ? new Date($scope.$storage.arrivalDate) : new Date();
-    $scope.checkOutDate.setDate($scope.checkInDate.getDate() + 1);
-    $scope.checkOutDate.setHours(0,0,0,0);
+    $scope.$storage.bookDate = moment("2017-12-08");
+   
+    $scope.checkInDate = ($scope.$storage.arrivalDate) ? new Date($scope.$storage.arrivalDate) : $scope.$storage.bookDate;
+    $scope.checkOutDate = ($scope.$storage.departureDate) ? new Date($scope.$storage.arrivalDate) : $scope.$storage.bookDate;
+    // $scope.checkOutDate.setDate($scope.checkInDate.getDate() + 1);
+    // $scope.checkOutDate = moment($scope.$storage.bookDate).add('1','d');
 
     pickmeup('.checkInPicker', {
         flat: true,
-        mode: 'single',
-        format: 'Y-m-d',
+        format: 'd-m-Y',
         default_date : false,
-        min : $scope.checkInDate,
+        min : $scope.checkInDate.format('D-MM-YYYY'),
         locale : 'en',
         calendars: 2,
     });
     pickmeup('.checkOutPicker', {
         flat: true,
-        mode: 'single',
-        format: 'Y-m-d',
+        format: 'd-m-Y',
         default_date : false,
-        min : $scope.checkOutDate,
+        min : $scope.checkInDate.format('D-MM-YYYY'),
         locale : 'en',
         calendars: 2,
     });
-    $scope.firstDate = ($scope.checkInDate.getDate() <= 9) ? '0' + $scope.checkInDate.getDate() : $scope.checkInDate.getDate();
-    $scope.firstDay = days[$scope.checkInDate.getDay()];
-    $scope.firstYear = $scope.checkInDate.getFullYear();
-    $scope.firstMonth = monthNames[$scope.checkInDate.getMonth()];
     
-    $scope.secondDate = ($scope.checkOutDate.getDate() <= 9) ? '0' + $scope.checkOutDate.getDate() : $scope.checkOutDate.getDate();
-    $scope.secondDay = days[$scope.checkOutDate.getDay()];
-    $scope.secondYear = $scope.checkOutDate.getFullYear();
-    $scope.secondMonth = monthNames[$scope.checkOutDate.getMonth()];
+    $scope.firstDate = ($scope.checkInDate.date() <= 9) ? '0' + $scope.checkInDate.date() : $scope.checkInDate.date();
+    // $scope.firstDate = ($scope.checkInDate.getDate() <= 9) ? '0' + $scope.checkInDate.getDate() : $scope.checkInDate.getDate();
+    // $scope.firstDay = days[$scope.checkInDate.getDay()];
+    // $scope.firstYear = $scope.checkInDate.getFullYear();
+    // $scope.firstMonth = monthNames[$scope.checkInDate.getMonth()];
+    //
+    // $scope.secondDate = ($scope.checkOutDate.getDate() <= 9) ? '0' + $scope.checkOutDate.getDate() : $scope.checkOutDate.getDate();
+    // $scope.secondDay = days[$scope.checkOutDate.getDay()];
+    // $scope.secondYear = $scope.checkOutDate.getFullYear();
+    // $scope.secondMonth = monthNames[$scope.checkOutDate.getMonth()];
 
     $scope.showCheckInDiv = function () {
       $('.calendar_bottom').css('display','none');
@@ -69,6 +70,7 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
     var elementCheckOut = angular.element(checkOutPickerResult);
 
     elementCheckIn[0].addEventListener('pickmeup-change', function (e) {
+      $scope.checkInDate = moment(e.detail.formatted_date);
       $scope.checkInDate = e.detail.date;
       $scope.firstDate = ($scope.checkInDate.getDate() <= 9) ? '0' + $scope.checkInDate.getDate() : $scope.checkInDate.getDate();
       $scope.firstDay = days[$scope.checkInDate.getDay()];
