@@ -149,31 +149,5 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     
     $scope.makeReservation = function (e) {
         $state.go('personal');
-    }
-  $scope.thumbs = [{
-    "image": "https://d13yacurqjgara.cloudfront.net/users/14501/screenshots/2362120/preview.jpg",
-    "name": "Cat on Fence"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/193037/screenshots/876358/11q2.png",
-    "name": "Cat in Sun"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/14501/screenshots/2362120/preview.jpg",
-    "name": "Blue Eyed Cat"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/193037/screenshots/876358/11q2.png",
-    "name": "Patchy Cat"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/14501/screenshots/2362120/preview.jpg",
-    "name": "Feral Cats"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/193037/screenshots/876358/11q2.png",
-    "name": "Mad Cat"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/14501/screenshots/2362120/preview.jpg",
-    "name": "Fluffy Cat"
-  }, {
-    "image": "https://d13yacurqjgara.cloudfront.net/users/193037/screenshots/876358/11q2.png",
-    "name": "Cat Laying Down"
-  }];
-    
+    };
 });

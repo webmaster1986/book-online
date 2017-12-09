@@ -194,14 +194,12 @@
             <div class="modal-body">
                 <div class="popup_dt">
                     <div class="popup_left">
-                        <div uib-carousel active="active" interval="5000" no-wrap="false">
-                            <div uib-slide ng-repeat="thumb in thumbs">
-                                <img ng-src="{{thumb.image}}" style="margin:auto;  width: 100%;"/>
-                                <div class="carousel-caption">
-                                    <h4>Slide {{thumb.subtitle}}</h4>
-                                    <p>{{thumb.subtitle}}</p>
-                                </div>
-                            </div>
+                        <div style="height: auto; margin-bottom: 30px;">
+                            <uib-carousel style="background-color: black; color: white">
+                                <uib-slide ng-repeat="slide in roomTypeInfo.fileEntries" active="slide.active">
+                                    <img ng-src="{{ slide.url }}" style="margin: 0 auto">
+                                </uib-slide>
+                            </uib-carousel>
                         </div>
                         <p ng-bind="roomTypeInfo.longDesc"></p>
                     </div>
@@ -234,7 +232,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

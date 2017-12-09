@@ -1622,7 +1622,7 @@ li.arrival_data.active {
     display: inline-block;
 }
 
-.popup_left img {
+.popup_left > img {
     width: 100%;
     margin-bottom: 30px;
 }
