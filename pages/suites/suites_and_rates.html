@@ -144,7 +144,7 @@
                     <div class="form-group">
                         <label>CHECK-IN</label>
                         <div class='input-group date'>
-                            <input type='text' class="form-control checkIn" ng-model="checkInPicker"/>
+                            <input type='text' class="form-control checkIn" ng-model="checkInPicker" style="color:#c88864"/>
                             <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -156,7 +156,7 @@
                     <div class="form-group">
                         <label>CHECKOUT</label>
                         <div class='input-group date'>
-                            <input type='text' class="form-control checkOut" ng-model="checkOutPicker"/>
+                            <input type='text' class="form-control checkOut" ng-model="checkOutPicker" style="color:#c88864"/>
                             <span class="input-group-addon">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
@@ -168,12 +168,12 @@
                 <ul>
                     <li ng-repeat="book in $storage.bookRooms track by $index">
                         <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
-                        <span ng-repeat="rate in book.rates">R{{rate.price.formatted}}   <a
-                                ng-click="removeRoom(book.id)" style="cursor:pointer">X</a></span>
+                        <span ng-repeat="rate in book.rates">R{{rate.price.formatted | currency : value ="" }}
+                            <a ng-click="removeRoom(book.id)" style="cursor:pointer">X</a></span>
                     </li>
                     <li class="total">
                         <h4>TOTAL</h4>
-                        <span>R{{ getTotalCost() | currency : value="" }}</span>
+                        <span>R{{ getTotalCost() | currency : value ="" }}</span>
                     </li>
                     <li class="total_btn"><a ng-click="makeReservation()" style="cursor:pointer">MAKE RESERVATION</a></li>
                 </ul>
@@ -183,19 +183,26 @@
 </div>
 
 
-<!-- Modal -->
+<!-- Hotel Info Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-
             </div>
             <div class="modal-body">
                 <div class="popup_dt">
                     <div class="popup_left">
-                        <img src="images/img1.jpg" alt=""/>
+                        <div uib-carousel active="active" interval="5000" no-wrap="false">
+                            <div uib-slide ng-repeat="thumb in thumbs">
+                                <img ng-src="{{thumb.image}}" style="margin:auto;  width: 100%;"/>
+                                <div class="carousel-caption">
+                                    <h4>Slide {{thumb.subtitle}}</h4>
+                                    <p>{{thumb.subtitle}}</p>
+                                </div>
+                            </div>
+                        </div>
                         <p ng-bind="roomTypeInfo.longDesc"></p>
                     </div>
                     <div class="popup_right">
@@ -228,6 +235,25 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Room Confirm Model -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="roomModal">
+    <div class="modal-dialog modal-md">
+        <div class="sidebar_data">
+            <div class="sidebar_row" style="border-bottom:none; position: initial">
+                <div class="modal-header" style="border-bottom:none">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-align: center">Are you sure you want to remove this room? </h4>
+                </div>
+                <div class="modal-footer" style="border-top:none;text-align: center">
+                    <input type="hidden" value="" ng-model="roomModelId">
+                    <button type="button" class="" data-dismiss="modal"  style="height: 60px;	width: 128px; background-color: #828282;">CANCEL</button>
+                    <button type="button" class="total_btn" id="remove" ng-click="removeRoomFromCart(roomModelId)" style="height: 60px;	width: 125px;	border: 1px solid #C88864;	background-color: #C88864;">REMOVE</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,11 +1,14 @@
 app.controller('personalCtrl', function ($scope, $localStorage, $state, $filter) {
     $scope.$storage = $localStorage;
     $localStorage.bookRooms = ($localStorage.bookRooms) ? $localStorage.bookRooms : [];
-    
-    $scope.checkInDate   =   $filter('date')($scope.$storage.arrivalDate, "dd MMM yyyy");
-    $scope.checkOutDate =   $filter('date')($scope.$storage.departureDate, "dd MMM yyyy");
-    
-    $scope.removeRoom = function (roomId) {
+
+  $scope.$storage.arrivalDate = moment($scope.$storage.arrivalDate);
+  $scope.$storage.departureDate = moment($scope.$storage.departureDate);
+
+  $scope.checkInDate  = $scope.$storage.arrivalDate.format('D-MMM-YYYY');
+  $scope.checkOutDate = $scope.$storage.departureDate.format('D-MMM-YYYY');
+
+  $scope.removeRoom = function (roomId) {
         $localStorage.bookRooms.forEach(function (room, index) {
             if (room.id === roomId) {
                 $localStorage.bookRooms.splice(index, 1);

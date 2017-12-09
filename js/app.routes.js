@@ -73,8 +73,8 @@
                 title   : 'Login',
                 url		: '/login',
                 views	:{
-                    'thanks':{
-                        templateUrl	: '/pages/thanks/login.html',
+                    'login':{
+                        templateUrl	: '/pages/login/login.html',
                         controller  : 'loginCtrl'
                     }
                 }

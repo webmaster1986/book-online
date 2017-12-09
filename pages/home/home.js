@@ -13,8 +13,8 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
   });
 
   $scope.$storage.bookDate = moment($localStorage.bookDate);
-  $scope.checkInDate = ($scope.$storage.arrivalDate) ? $scope.$storage.arrivalDate : $scope.$storage.bookDate;
-  $scope.checkOutDate = ($scope.$storage.departureDate) ? $scope.$storage.departureDate  : $scope.$storage.bookDate;
+  $scope.checkInDate = ($scope.$storage.arrivalDate) ? moment($scope.$storage.arrivalDate) : $scope.$storage.bookDate;
+  $scope.checkOutDate = ($scope.$storage.departureDate) ? moment($scope.$storage.departureDate)  : $scope.$storage.bookDate;
 
   // $scope.checkOutDate.setDate($scope.checkInDate.getDate() + 1);
   // $scope.checkOutDate = moment($scope.$storage.bookDate).add('1','d');
