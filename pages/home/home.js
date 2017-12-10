@@ -18,23 +18,46 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
 
   // $scope.checkOutDate.setDate($scope.checkInDate.getDate() + 1);
   // $scope.checkOutDate = moment($scope.$storage.bookDate).add('1','d');
-
-  pickmeup('.checkInPicker', {
-    flat: true,
-    format: 'd-m-Y',
-    default_date: false,
-    min: $scope.checkInDate.format('D-MM-YYYY'),
-    locale: 'en',
-    calendars: 2,
-  });
-  pickmeup('.checkOutPicker', {
-    flat: true,
-    format: 'd-m-Y',
-    default_date: false,
-    min: $scope.checkInDate.format('D-MM-YYYY'),
-    locale: 'en',
-    calendars: 2,
-  });
+  if($( window ).width()<639) {
+    pickmeup('.checkInPicker', {
+      flat: true,
+      format: 'd-m-Y',
+      default_date: false,
+      hide_on_select: true,
+      min: $scope.checkInDate.format('D-MM-YYYY'),
+      locale: 'en',
+      calendars: 1,
+    });
+  } else {
+    pickmeup('.checkInPicker', {
+      flat: true,
+      format: 'd-m-Y',
+      default_date: false,
+      min: $scope.checkInDate.format('D-MM-YYYY'),
+      locale: 'en',
+      calendars: 2,
+    });
+  }
+  if($( window ).width()<639) {
+    pickmeup('.checkOutPickerMob', {
+      flat: true,
+      format: 'd-m-Y',
+      default_date: false,
+      hide_on_select: true,
+      min: $scope.checkInDate.format('D-MM-YYYY'),
+      locale: 'en',
+      calendars: 1,
+    });
+  } else {
+    pickmeup('.checkOutPicker', {
+      flat: true,
+      format: 'd-m-Y',
+      default_date: false,
+      min: $scope.checkInDate.format('D-MM-YYYY'),
+      locale: 'en',
+      calendars: 2,
+    });
+  }
 
   $scope.firstDate = ($scope.checkInDate.date() <= 9) ? '0' + $scope.checkInDate.date() : $scope.checkInDate.date();
   $scope.firstDay = days[$scope.checkInDate.weekday()];
@@ -55,12 +78,17 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
     $('.arrival_data').addClass('active');
   };
   $scope.showCheckOutDiv = function () {
-    $('.calendar_bottom').css('display', 'none');
-    $('.calendar_bottom').toggle();
-    $('#checkInDiv').hide();
-    $('#checkOutDiv').show();
-    $('.arrival_data').removeClass('active');
-    $('.departure_data').addClass('active');
+    if($( window ).width()<639) {
+      $('.checkOutMobile').css('background-color','#EEECE6');
+      $('.calendar_mobile').show();
+    } else {
+      $('.calendar_bottom').css('display', 'none');
+      $('.calendar_bottom').toggle();
+      $('#checkInDiv').hide();
+      $('#checkOutDiv').show();
+      $('.arrival_data').removeClass('active');
+      $('.departure_data').addClass('active');
+    }
   };
 
   var checkInPickerResult = document.getElementsByClassName("checkInPicker");
@@ -69,22 +97,48 @@ app.controller('homeCtrl', function ($scope, $localStorage, $state, API_URL, $ht
   var checkOutPickerResult = document.getElementsByClassName("checkOutPicker");
   var elementCheckOut = angular.element(checkOutPickerResult);
 
-  elementCheckIn[0].addEventListener('pickmeup-change', function (e) {
+  var checkOutPickerMobResult = document.getElementsByClassName("checkOutPickerMob");
+  var elementCheckOutPickerMob = angular.element(checkOutPickerMobResult);
 
-    $scope.checkInDate = moment(e.detail.date);
-    $scope.firstDate = ($scope.checkInDate.date() <= 9) ? '0' + $scope.checkInDate.date() : $scope.checkInDate.date();
-    $scope.firstDay = days[$scope.checkInDate.weekday()];
-    $scope.firstYear = $scope.checkInDate.year();
-    $scope.firstMonth = monthNames[$scope.checkInDate.months()];
+  elementCheckIn[0].addEventListener('pickmeup-change', function (e) {
+    if($( window ).width()<639) {
+      $scope.checkInDate = moment(e.detail.date);
+      $scope.firstDate = ($scope.checkInDate.date() <= 9) ? '0' + $scope.checkInDate.date() : $scope.checkInDate.date();
+      $scope.firstDay = days[$scope.checkInDate.weekday()];
+      $scope.firstYear = $scope.checkInDate.year();
+      $scope.firstMonth = monthNames[$scope.checkInDate.months()];
+      $scope.$apply();
+      $('.calendar_bottom').css('display', 'none');
+      $('.arrival_data').removeClass('active');
+      $('.departure_data').removeClass('active');
+      $('#checkInDiv').hide();
+      $('#checkOutDiv').hide();
+    } else {
+      $scope.checkInDate = moment(e.detail.date);
+      $scope.firstDate = ($scope.checkInDate.date() <= 9) ? '0' + $scope.checkInDate.date() : $scope.checkInDate.date();
+      $scope.firstDay = days[$scope.checkInDate.weekday()];
+      $scope.firstYear = $scope.checkInDate.year();
+      $scope.firstMonth = monthNames[$scope.checkInDate.months()];
+      $scope.$apply();
+      $('.arrival_data').removeClass('active');
+      $('.departure_data').addClass('active');
+      $('#checkInDiv').hide();
+      $('#checkOutDiv').show();
+    }
+  });
+
+  elementCheckOutPickerMob[0].addEventListener('pickmeup-change', function (e) {
+    $scope.checkOutDate = moment(e.detail.date);
+    $scope.secondDate   = ($scope.checkOutDate.date() <= 9) ? '0' + $scope.checkOutDate.date() : $scope.checkOutDate.date();
+    $scope.secondDay    = days[$scope.checkOutDate.weekday()];
+    $scope.secondYear   = $scope.checkOutDate.year();
+    $scope.secondMonth  = monthNames[$scope.checkOutDate.months()];
     $scope.$apply();
-    $('.arrival_data').removeClass('active');
-    $('.departure_data').addClass('active');
-    $('#checkInDiv').hide();
-    $('#checkOutDiv').show();
+    $('.checkOutMobile').css('background-color','none');
+    $('.calendar_mobile').hide();
   });
 
   elementCheckOut[0].addEventListener('pickmeup-change', function (e) {
-
     $scope.checkOutDate = moment(e.detail.date);
     $scope.secondDate   = ($scope.checkOutDate.date() <= 9) ? '0' + $scope.checkOutDate.date() : $scope.checkOutDate.date();
     $scope.secondDay    = days[$scope.checkOutDate.weekday()];

@@ -16,28 +16,34 @@
                         </li>
                         <li class="departure_data" ng-click="showCheckOutDiv()">
                             <h5>CHECKOUT</h5>
-                            <h1>{{secondDate}} <i class="fa fa-angle-down"></i></h1>
-                            <span>{{secondMonth | uppercase}} {{secondYear}}</span>
+                            <h1>{{ secondDate }} <i class="fa fa-angle-down"></i></h1>
+                            <span>{{ secondMonth | uppercase }} {{ secondYear }}</span>
                             <span>{{ secondDay | uppercase }}</span>
                         </li>
                     </ul>
                 </div>
                 <div class="calendar_bottom" style="display: none">
                     <article>
-                            <div class="three-calendars checkInPicker" id="checkInDiv" style="display: none" ></div>
-                            <div class="three-calendars checkOutPicker" id="checkOutDiv" style="display: none"></div>
+                        <div class="checkInPicker" id="checkInDiv" style="display: none" ></div>
+                        <div class="checkOutPicker" id="checkOutDiv" style="display: none"></div>
                     </article>
                     <div ng-if="bothDate">* Please select a date before checking availibility </div>
                 </div>
                 <div class="mb_info">
-                    <h5>CHECK-IN</h5>
-                    <select class="form-control">
-                        <option>Select date</option>
-                        <option>Select date</option>
-                        <option>Select date</option>
-                        <option>Select date</option>
-                        <option>Select date</option>
-                    </select>
+                    <h5 class="checkOutMobile" style="height: 40px; padding: 0px">CHECKOUT</h5>
+                    <div class="mb_dt" ng-click="showCheckOutDiv()">Select date</div>
+                    <div class="calendar_mobile" style="display: none;">
+                        <article>
+                            <div class="checkOutPickerMob"></div>
+                        </article>
+                    </div>
+                    <!--<select class="form-control">-->
+                        <!--<option>Select date</option>-->
+                        <!--<option>Select date</option>-->
+                        <!--<option>Select date</option>-->
+                        <!--<option>Select date</option>-->
+                        <!--<option>Select date</option>-->
+                    <!--</select>-->
                 </div>
             </div>
             <div class="availability">

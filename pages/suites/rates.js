@@ -126,17 +126,7 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
         $localStorage.totalCost = totalCost;
         return totalCost;
     };
-    
-    $scope.$on('$viewContentLoaded', function (event) {
-        $timeout(function () {
-            $('.bxslider').bxSlider({
-                mode: 'fade',
-                captions: true,
-                slideWidth: 600
-            });
-        }, 0);
-    });
-    
+
     $scope.moreInformation = function (roomId) {
         $http.get(API_URL + $scope.$storage.webKey + '/RoomTypes/' + roomId + '/WBEFull?format=json')
             .then(function (res) {

@@ -10,9 +10,9 @@
                     <div class="sidebar_left">
                         <div class="form-group">
                             <label>CHECK-IN</label>
-                            <div class='input-group date' id=''>
-                                <input style="border-width: 1px;" type='text' class="form-control"
-                                       placeholder="1 Nov 2017"/>
+                            <div class='input-group date'>
+                                <input style="border-width: 1px;color:#c88864" type='text'  class="form-control checkIn"
+                                       placeholder="1 Nov 2017" ng-model="checkInDate"/>
                             </div>
                         </div>
                     </div>
@@ -20,47 +20,26 @@
                     <div class="sidebar_right">
                         <div class="form-group">
                             <label>CHECKOUT</label>
-                            <div class='input-group date' id=''>
-                                <input style="border-width: 1px;" type='text' class="form-control"
-                                       placeholder="3 Nov 2017"/>
+                            <div class='input-group date'>
+                                <input style="border-width: 1px;color:#c88864" type='text' class="form-control checkOut"
+                                       placeholder="3 Nov 2017" ng-model="checkOutDate"/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="sidebar_prices">
                     <ul>
-                        <li>
-                            <h4>Casia Suite <samp>(2 Nights)</samp></h4>
-                            <span>R76,000.00 <a href="#">X</a></span>
-                        </li>
-                        <li>
-                            <h4>Knobthorn Suite <samp>(2 Nights)</samp></h4>
-                            <span>R76,000.00 <a href="#">X</a></span>
-                        </li>
-                        <li>
-                            <h4>JHB to Silvan <samp>(2)</samp></h4>
-                            <span>R9,000.00<a href="#">X</a></span>
-                        </li>
-                        <li>
-                            <h4>Silvan to Cape Town <samp>(2)</samp></h4>
-                            <span>R9,000.00<a href="#">X</a></span>
-                        </li>
-                        <li>
-                            <div>
-                                <h4>ROOM CHARGES </h4>
-                                <span>R152,000.00</span>
-                            </div>
-                            <div>
-                                <h4>ADDITIONAL SERVICES</h4>
-                                <span>R18,000.00</span>
-                            </div>
-
+                        <li ng-repeat="book in $storage.bookRooms track by $index">
+                            <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
+                            <span ng-repeat="rate in book.rates">R{{rate.price.formatted | currency : value =""}}
+                                <a ng-click="removeRoom(book.id)">X</a></span>
                         </li>
                         <li class="total">
                             <h4>TOTAL</h4>
-                            <span>R170,000.00</span>
+                            <span>R{{getTotalCost() | currency : value=""}}</span>
                         </li>
-                        <li class="total_btn"><a href="#/confirm">REVIEW AND CONFIRM</a></li>
+                        <!--<button type="submit">MAKE RESERVATION</button>-->
+                        <li class="total_btn"> <button type="submit">MAKE RESERVATION</button></li>
                     </ul>
                 </div>
             </div>
@@ -228,7 +207,7 @@
                     <ul>
                         <li ng-repeat="book in $storage.bookRooms track by $index">
                             <h4>{{book.name}}<samp>({{book.duration}} Nights)</samp></h4>
-                            <span ng-repeat="rate in book.rates">R{{rate.price.formatted}}
+                            <span ng-repeat="rate in book.rates">R{{rate.price.formatted | currency : value =""}}
                                 <a ng-click="removeRoom(book.id)">X</a></span>
                         </li>
                         <li class="total">

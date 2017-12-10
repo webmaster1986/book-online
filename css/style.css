@@ -339,7 +339,7 @@ li.departure_data span {
     margin-bottom: 10px;
 }
 
-.calendar_bottom {
+.calendar_bottom, .calendar_mobile {
     width: 100%;
     display: inline-block;
     float: left;
@@ -1470,6 +1470,7 @@ li.arrival_data.active {
 
     li.arrival_data {
         background-color: transparent;
+        padding: 0px;
     }
 
     li.arrival_data h1, li.arrival_data span, .number_data, .bottom_data {
@@ -1482,8 +1483,10 @@ li.arrival_data.active {
 
     .mb_dt {
         display: block;
+        background-color: #272c31;
+        margin-bottom: 0px;
+        padding: 20px;
     }
-
     .pickmeup .pmu-instance {
         width: 100%;
         margin: 0;
@@ -1552,6 +1555,10 @@ li.arrival_data.active {
 }
 
 @media screen and (max-width: 479px) {
+
+    .book_calendar .pickmeup .pmu-instance{
+        width: 100%;
+    }
 
     .login_data {
         padding: 35px;
