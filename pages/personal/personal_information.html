@@ -60,68 +60,83 @@
                                 <option value="Miss.">Miss</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <div ng-messages="personalForm.username.$error" style="color:#9A2F21" ng-if='personalForm.username.$dirty || personalForm.username.$touch' ng-cloak>
-                                <div ng-message="required">Name is required.</div>
-                                <div ng-message="minlength">Username should have at least 6 characters.</div>
-                            </div>
-                            <input type="text" ng-model="personal.username" name="username" class="form-control"
-                                   placeholder="Name" required>
+                        <div class="form-group field-container">
+                            <label>
+                                <div ng-messages="personalForm.username.$error" style="color:#9A2F21" ng-if='personalForm.username.$dirty || personalForm.username.$touch' ng-cloak>
+                                    <div ng-message="required">Name is required.</div>
+                                </div>
+                                <input type="text" ng-model="personal.name" name="name" class="form-control field" required>
+                                <span>First Name</span>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group field-container">
                             <div ng-messages="personalForm.surname.$error" style="color:#9A2F21"  ng-if='personalForm.surname.$dirty' ng-cloak>
                                 <div ng-message="required">Surname is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.surname" name="surname" class="form-control"
-                                   placeholder="Surname" required>
+                            <label>
+                                <input type="text" ng-model="personal.surname" name="surname" class="form-control field" required>
+                                <span>Surname</span>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group field-container">
                             <div ng-messages="personalForm.email.$error" style="color:#9A2F21"  ng-if='personalForm.email.$dirty' ng-cloak>
                                 <div ng-message="required">E-mail address is required.</div>
                                 <div ng-message="email">E-mail address is not Valid.</div>
                             </div>
-                            <input type="email" ng-model="personal.email" name="email" class="form-control"
-                                   placeholder="E-mail address" required>
+                            <label>
+                                <input type="email" ng-model="personal.email" name="email" class="form-control field" required>
+                                <span>Email Address</span>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group field-container">
                             <div ng-messages="personalForm.telephone.$error" style="color:#9A2F21"  ng-if='personalForm.telephone.$dirty' ng-cloak>
                                 <div ng-message="required">Telephone Number is required.</div>
                             </div>
-                            <input type="number" ng-model="personal.telephone" name="telephone" class="form-control"
-                                   placeholder="Telephone number" required>
+                            <label>
+                                <input type="number" ng-model="personal.telephone" name="telephone" class="form-control field" required>
+                                <span>Telephone Number</span>
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="form_data">
                         <h3>Address</h3>
-                        <div class="form-group">
+                        <div class="form-group field-container">
                             <div ng-messages="personalForm.street.$error" style="color:#9A2F21"  ng-if='personalForm.street.$dirty' ng-cloak>
                                 <div ng-message="required">Street address is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.street" name="street" class="form-control"
-                                   placeholder="Street address" required>
+                            <label>
+                                <input type="text" ng-model="personal.street" name="street" class="form-control" required>
+                                <span>Street address</span>
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <div ng-messages="personalForm.city.$error" style="color:#9A2F21"  ng-if='personalForm.city.$dirty' ng-cloak>
+                        <div class="form-group field-container">
+                            <div ng-messages="personalForm.city.$error" style="color:#9A2F21"  ng-if="personalForm.city.$dirty" ng-cloak>
                                 <div ng-message="required">City is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.city" name="city" class="form-control"
-                                   placeholder="City" required>
+                            <label>
+                                <input type="text" ng-model="personal.city" name="city" class="form-control" required>
+                                <span>City</span>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group field-container">
                             <div ng-messages="personalForm.postal.$error" style="color:#9A2F21"  ng-if='personalForm.postal.$dirty' ng-cloak>
                                 <div ng-message="required">Postal code is required.</div>
                             </div>
-                            <input type="number" ng-model="personal.postal" name="postal" class="form-control"
-                                   placeholder="Postal code" required>
+                            <label>
+                                <input type="number" ng-model="personal.postal" name="postal" class="form-control" required>
+                                <span>Postal code</span>
+                            </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group field-container">
                             <div ng-messages="personalForm.state.$error" style="color:#9A2F21"  ng-if='personalForm.state.$dirty' ng-cloak>
                                 <div ng-message="required">State or province is required.</div>
                             </div>
-                            <input type="text" ng-model="personal.state" name="state" class="form-control"
-                                   placeholder="State or province" required>
+                            <label>
+                                <input type="text" ng-model="personal.state" name="state" class="form-control" required>
+                                <span>State or province</span>
+                            </label>
                         </div>
                         <div class="form-group">
                             <select class="form-control" ng-model="personal.country">
@@ -136,12 +151,14 @@
                     </div>
                 </div>
             </div>
-            <div id="guest_information"></div>
+            <div class="row">
+                <div id="guest_information"></div>
+            </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="form_data">
+                    <div class="form_data" style="cursor: pointer;" add-html>
                         <h3>Guest Information</h3>
-                        <a add-html><i class="fa fa-plus"></i></a>
+                        <a><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -215,10 +232,12 @@
                             <span>R{{getTotalCost() | currency : value=""}}</span>
                         </li>
                         <!--<button type="submit">MAKE RESERVATION</button>-->
-                        <li class="total_btn"> <button type="submit">MAKE RESERVATION</button></li>
+                        <li class="total_btn"> <button type="submit">Proceed to Checkout</button></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+

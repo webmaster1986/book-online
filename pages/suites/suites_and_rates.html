@@ -37,6 +37,10 @@
                             <a ng-click="removeRoom(book.id)" style="cursor:pointer">X</a></span>
                     </li>
                     <li class="total">
+                        <h4>Cost for # nights</h4>
+                        <span>R{{ getTotalCost() | currency : value ="" }}</span>
+                    </li>
+                    <li class="total">
                         <h4>TOTAL</h4>
                         <span>R{{ getTotalCost() | currency : value ="" }}</span>
                     </li>
@@ -78,11 +82,12 @@
                         </div>
                         <div class="pr_rt" ng-repeat="rate in room.rates">
                             <h2><span>From</span>R{{rate.price.formatted | currency : value =""}}</h2>
-                            <p>Cost for {{room.duration}} 2 Nights</p>
+                            <p>Cost pppn</p>
                             <samp><i class="fa fa-users"></i> 2 Pax</samp>
                             <a ng-click="addRoom(room)" style="cursor:pointer">ADD ROOM</a>
                         </div>
                     </div>
+                    <!-- For Mobile -->
                     <div class="mb_in">
                         <ul>
                             <li class="pr_lt bd_bt">
@@ -91,7 +96,7 @@
                             </li>
                             <li class="pr_rt bd_bt" ng-repeat="rate in room.rates">
                                 <h2>
-                                    <span>From</span>R{{rate.price.formatted | currency : value =""}}<span> Cost for {{room.duration}} Nights</span>
+                                    <span>From</span>R{{rate.price.formatted | currency : value =""}}<span> Cost pppn</span>
                                 </h2>
                             </li>
                             <li class="pr_lt">
@@ -102,6 +107,7 @@
                             </li>
                         </ul>
                     </div>
+                    <!-- End For Mobile -->
                 </li>
                 <li ng-if="!roomList" style="color: red"><h2> No Rooms are available </h2></li>
             </ul>
@@ -225,6 +231,33 @@
                     <input type="hidden" value="" ng-model="roomModelId">
                     <button type="button" class="" data-dismiss="modal"  style="height: 60px;	width: 128px; background-color: #828282;">CANCEL</button>
                     <button type="button" class="total_btn" id="remove" ng-click="removeRoomFromCart(roomModelId)" style="height: 60px;	width: 125px;	border: 1px solid #C88864;	background-color: #C88864;">REMOVE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Room Model -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="addRoomModal">
+    <div class="modal-dialog modal-md">
+        <div class="sidebar_data">
+            <div class="sidebar_row" style="border-bottom:none; position: initial">
+                <div class="modal-header" style="border-bottom:none">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-align: center">How many guests are staying?</h4>
+                </div>
+                <div class="modal-body" style="border-bottom:none">
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" class=" guestTotal">1 Pax
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" class="guestTotal">2 Pax
+                    </label>
+                    <h4 class="modal-title" style="text-align: center">ZAR 228,000.00 for 2 Nights</h4>
+                </div>
+                <div class="modal-footer" style="border-top:none;text-align: center">
+                    <button type="button" class="" data-dismiss="modal"  style="height: 60px;	width: 128px; background-color: #828282;">CANCEL</button>
+                    <button type="button" class="total_btn" id="" ng-click="removeRoomFromCart(roomModelId)" style="height: 60px;	width: 125px;	border: 1px solid #C88864;	background-color: #C88864;">ADD ROOM</button>
                 </div>
             </div>
         </div>
