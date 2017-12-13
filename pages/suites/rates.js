@@ -97,19 +97,34 @@ app.controller('ratesCtrl', function ($scope, $localStorage, $state, $timeout, $
     $localStorage.bookRooms = ($localStorage.bookRooms) ? $localStorage.bookRooms : [];
     
     $scope.addRoom = function (room) {
+      $scope.currentRoom = room;
       $('#addRoomModal').modal('show');
-        // $scope.duplicate = $filter('filter')($localStorage.bookRooms, {id: room.id}, true);
-        //
-        // if ($scope.duplicate.length === 0) {
-        //     $localStorage.bookRooms.push(room);
-        // }
-        // if (!$localStorage.bookRooms.length) {
-        //     $localStorage.bookRooms.push(room);
-        // }
+    };
+    
+    $scope.addRoomToCart = function (room, onePerson, twoPerson) {
+      if($localStorage.bookRooms.length)
+        $scope.duplicate = $filter('filter')($localStorage.bookRooms, {id: room.id}, true);
+
+      if ($scope.duplicate) {
+          $localStorage.bookRooms.push(room);
+      }
+      if (!$localStorage.bookRooms.length) {
+          $localStorage.bookRooms.push(room);
+      }
+      $('#addRoomModal').modal('hide');
     };
     $scope.removeRoom = function (roomId) {
         $('#roomModal').modal('show');
         $scope.roomModelId = roomId;
+    };
+    $scope.checkAlreadyAdded = function (roomId) {
+      for(var i = 0; i < $localStorage.bookRooms.length; i++) {
+        if ($localStorage.bookRooms[i].id === roomId) {
+          return true;
+        } else {
+          return false
+        }
+      }
     };
     $scope.removeRoomFromCart = function (roomID) {
       $localStorage.bookRooms.forEach(function (room, index) {

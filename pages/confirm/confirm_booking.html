@@ -1,113 +1,115 @@
 
 <form role="form" method="POST" action="https://www.vcs.co.za/vvonline/vcspay.aspx" onsubmit="return validate();">
     <div class="col-md-8 col-sm-7 col-xs-12">
-    <div class="review_data">
-        <div class="review_heading">
-            <h3>REVIEW RESERVATION</h3>
-        </div>
-        <div class="review_contant">
-            <div class="review_left">
-                <img src="images/img1.jpg" alt=""/>
+        <div class="review_data">
+            <div class="review_heading">
+                <h3>REVIEW RESERVATION</h3>
             </div>
-            <div class="review_right">
-                <h3>{{$storage.hotelInformation.name}}</h3>
+            <div class="review_contant">
+                <div class="review_left">
+                    <img src="images/img1.jpg" alt=""/>
+                </div>
+                <div class="review_right">
+                    <h3>{{$storage.hotelInformation.name}}</h3>
+                    <ul>
+                        <li>
+                            <ul class="sub_data">
+                                <li>{{$storage.hotelInformation.address1}}</li>
+                                <li>{{$storage.hotelInformation.city}}</li>
+                                <li>{{$storage.hotelInformation.country}}</li>
+                                <li>1260</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="sub_data">
+                                <li><strong>Email:</strong> info@silvan.com</li>
+                                <li><strong>Reservations:</strong> +27 21 430 3200</li>
+                                <li><strong>Fax:</strong> +27 21 430 3215</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="sub_data">
+                                <li><strong>Check-in:</strong> {{custCheckInDate.getDay()}} {{custCheckInDate.getDate()}}
+                                    {{custCheckInDate.getMonth()}}  {{custCheckInDate.getFullYear()}}</li>
+                                <li><strong>Check-in:</strong> {{custCheckOutDate.getDay()}} {{custCheckOutDate.getDate()}}
+                                    {{custCheckOutDate.getMonth()}}  {{custCheckOutDate.getFullYear()}}</li>
+                                <li><strong>Rooms:</strong> 1</li>
+                                <li><strong>Guests:</strong> 2</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="sub_data">
+                                <li><strong>Room Charges:</strong> <span>R{{$storage.totalCost}}</span></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="sub_data">
+                                <li style="color: #000; font-weight:600;">TOTAL <span>R{{$storage.totalCost}}</span></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+                <input type="hidden" name="p1" value="0855">
+                <input type="hidden" name="p2" value="20171204_112936_79866">
+                <input type="hidden" name="p3" value="Mannabay">
+                <div class="form-group">
+                    <!--<label for="txt_bookref">Your Name *</label>-->
+                    <input class="form-control" type="hidden" name="m_1" id="txt_name" ng-model="$storage.userInformation.name">
+                </div>
+                <div class="form-group">
+                    <!--<label for="txt_bookref">Arrival Date *</label>-->
+                    <input class="form-control" type="hidden" name="m_2" id="txt_arrival" ng-model="$storage.arrivalDate">
+                </div>
+                <div class="form-group">
+                    <!--<label for="txt_bookref">Invoice Number</label>-->
+                    <input class="form-control" type="hidden" name="m_3" id="txt_bookref">
+                </div>
+                <div class="form-group">
+                    <!--<label for="txt_amount">Amount (ZAR) *</label>-->
+                    <input class="form-control" type="hidden" name="p4" id="txt_amount" placeholder="0" ng-model="$storage.totalCost">
+                </div>
+                <!--<button type="submit" class="btn btn-primary">Pay by Credit Card</button>-->
+            <div class="review_checkbox">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="flights" style="height: 20px; width: 20px; border: 1px solid #C88864;"> I need assistance in organizing my flights
+                    </label>
+                </div>
+            </div>
+            <div class="review_checkbox">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="terms" style="height: 20px; width: 20px; border: 1px solid #C88864;"> I have read and agree to Silvan Safari’s booking
+                        <a href="#">Terms & Conditions.</a>
+                    </label>
+                </div>
+            </div>
+            <div class="review_btn">
                 <ul>
-                    <li>
-                        <ul class="sub_data">
-                            <li>{{$storage.hotelInformation.address1}}</li>
-                            <li>{{$storage.hotelInformation.city}}</li>
-                            <li>{{$storage.hotelInformation.country}}</li>
-                            <li>1260</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="sub_data">
-                            <li><strong>Email:</strong> info@silvan.com</li>
-                            <li><strong>Reservations:</strong> +27 21 430 3200</li>
-                            <li><strong>Fax:</strong> +27 21 430 3215</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="sub_data">
-                            <li><strong>Check-in:</strong> {{custCheckInDate.getDay()}} {{custCheckInDate.getDate()}}
-                                {{custCheckInDate.getMonth()}}  {{custCheckInDate.getFullYear()}}</li>
-                            <li><strong>Check-in:</strong> {{custCheckOutDate.getDay()}} {{custCheckOutDate.getDate()}}
-                                {{custCheckOutDate.getMonth()}}  {{custCheckOutDate.getFullYear()}}</li>
-                            <li><strong>Rooms:</strong> 1</li>
-                            <li><strong>Guests:</strong> 2</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="sub_data">
-                            <li><strong>Room Charges:</strong> <span>R{{$storage.totalCost}}</span></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <ul class="sub_data">
-                            <li style="color: #000; font-weight:600;">TOTAL <span>R{{$storage.totalCost}}</span></li>
-                        </ul>
-                    </li>
+                    <li class="modify"><a href="#/home">MODIFY RESERVATION</a></li>
+                    <li class="confirm"> <button type="submit" >CONFIRM RESERVATION</button></li>
+                    <!--<li class="confirm"><a href="#/thanks" ng-disabled="confirmBtnDisable">CONFIRM RESERVATION</a></li>-->
                 </ul>
             </div>
         </div>
-            <input type="hidden" name="p1" value="0855">
-            <input type="hidden" name="p2" value="20171204_112936_79866">
-            <input type="hidden" name="p3" value="Mannabay">
-            <div class="form-group">
-                <!--<label for="txt_bookref">Your Name *</label>-->
-                <input class="form-control" type="hidden" name="m_1" id="txt_name" ng-model="$storage.userInformation.name">
-            </div>
-            <div class="form-group">
-                <!--<label for="txt_bookref">Arrival Date *</label>-->
-                <input class="form-control" type="hidden" name="m_2" id="txt_arrival" ng-model="$storage.arrivalDate">
-            </div>
-            <div class="form-group">
-                <!--<label for="txt_bookref">Invoice Number</label>-->
-                <input class="form-control" type="hidden" name="m_3" id="txt_bookref">
-            </div>
-            <div class="form-group">
-                <!--<label for="txt_amount">Amount (ZAR) *</label>-->
-                <input class="form-control" type="hidden" name="p4" id="txt_amount" placeholder="0" ng-model="$storage.totalCost">
-            </div>
-            <!--<button type="submit" class="btn btn-primary">Pay by Credit Card</button>-->
-        <div class="review_checkbox">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" ng-model="flights"> I need assistance in organizing my flights
-                </label>
-            </div>
-        </div>
-        <div class="review_checkbox">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" ng-model="terms"> I have read and agree to Silvan Safari’s booking
-                    <a href="#">Terms & Conditions.</a>
-                </label>
-            </div>
-        </div>
-        <div class="review_btn">
-            <ul>
-                <li class="modify"><a href="#/home">MODIFY RESERVATION</a></li>
-                <li class="confirm"> <button type="submit" >CONFIRM RESERVATION</button></li>
-                <!--<li class="confirm"><a href="#/thanks" ng-disabled="confirmBtnDisable">CONFIRM RESERVATION</a></li>-->
-            </ul>
-        </div>
     </div>
-</div>
 </form>
-<div class="col-md-4 col-sm-5 col-xs-12">
-    <div class="right_sidebar">
+<div class="col-md-4 col-sm-5 col-xs-12" >
+    <div class="right_sidebar" >
         <div class="sidebar_heading">
             <h2>MAIN GUEST</h2>
-            <a href="#/home">Edit</a>
+            <a href="#/personal">Edit</a>
         </div>
         <div class="sidebar_data">
-            <p>{{$storage.userInformation.guestName}} {{$storage.userInformation.guestSurname}}<br>
+            <p>
+                {{$storage.userInformation.guestName}} {{$storage.userInformation.guestSurname}}<br>
                 {{$storage.userInformation.guestEmail}}<br>
                 {{$storage.userInformation.guestTelephone}}<br>
                 {{$storage.userInformation.guestSurname}}<br>
                 Cape Town<br>
-                8000</p>
+                8000
+            </p>
         </div>
     </div>
 </div>

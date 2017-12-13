@@ -33,17 +33,17 @@ app.controller('personalCtrl', function ($scope, $localStorage, $state, $filter)
         });
         return totalCost;
     };
-    
+
     $scope.submitForm = function (form) {
-        
+
         angular.forEach(form.$error, function (field) {
             angular.forEach(field, function (errorField) {
                 errorField.$setTouched();
             })
         });
-        
+
         if (form.$invalid) return;
-        
+
         $localStorage.userInformation = $scope.personal;
         $state.go('confirm');
     };
@@ -54,12 +54,13 @@ app.controller('personalCtrl', function ($scope, $localStorage, $state, $filter)
 });
 
 app.directive('addHtml', function ($compile) {
-
-    return function(scope, element, attrs){
-      var test =scope.guestCount + 1;
-      var html = '<div class="col-md-6 col-sm-12 col-xs-12">' +
+  return function(scope, element, attrs){
+    element.bind("click", function(){
+      scope.guestCount++;
+      angular.element(document.getElementById('guest_information')).append($compile(
+        '<div class="col-md-6 col-sm-12 col-xs-12">' +
         '<div class="form_data">' +
-        '<h3>Guest Information</h3>' +
+        '<h3>Guest '+ scope.guestCount +' Information</h3>' +
         '<div class="form-group">' +
         '<select class="form-control">' +
         '<option>Mr.</option>' +
@@ -75,7 +76,7 @@ app.directive('addHtml', function ($compile) {
         '<input type="text" ng-model="personal.guestName'+ scope.guestCount +'" name="guestName'+ scope.guestCount +'" class="form-control" placeholder="Name" required>' +
         '</div>' +
         '<div class="form-group">' +
-        '<div ng-messages="personalForm.guestSurname'+ scope.guestCount +'.$error" style="color:#9A2F21"  ng-if="personalForm.guestSurname.$dirty'+ scope.guestCount +'">' +
+        '<div ng-messages="personalForm.guestSurname'+ scope.guestCount +'.$error" style="color:#9A2F21"  ng-if="personalForm.guestSurname'+ scope.guestCount +'.$dirty">' +
         '<div ng-message="required">Guest Surname is required.</div>' +
         '</div>' +
         '<input type="text" ng-model="personal.guestSurname'+ scope.guestCount +'" name="guestSurname'+ scope.guestCount +'" class="form-control" placeholder="Surname" required>' +
@@ -93,14 +94,10 @@ app.directive('addHtml', function ($compile) {
         '<input type="text" ng-model="personal.guestTelephone'+ scope.guestCount +'" name="guestTelephone'+ scope.guestCount +'" class="form-control" placeholder="Telephone number" required>' +
         '</div>' +
         '</div>' +
-        '</div>';
-        element.bind("click", function(){
-          console.log('Before_____________', scope.guestCount);
-          scope.guestCount++;
-          console.log('After_____________', scope.guestCount);
-            angular.element(document.getElementById('guest_information')).append($compile(html)(scope));
-        });
-    };
+        '</div>'
+      )(scope));
+    });
+  };
 });
 
 

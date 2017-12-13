@@ -83,8 +83,10 @@
                         <div class="pr_rt" ng-repeat="rate in room.rates">
                             <h2><span>From</span>R{{rate.price.formatted | currency : value =""}}</h2>
                             <p>Cost pppn</p>
-                            <samp><i class="fa fa-users"></i> 2 Pax</samp>
-                            <a ng-click="addRoom(room)" style="cursor:pointer">ADD ROOM</a>
+                            <samp ng-if="room.defaultOccupancy === 1"><i class="fa fa-user"></i> {{room.defaultOccupancy}} Pax</samp>
+                            <samp ng-if="room.defaultOccupancy === 2"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i> {{room.defaultOccupancy}} Pax</samp>
+                            <samp ng-if="room.defaultOccupancy > 2"><i class="fa fa-users"></i> {{room.defaultOccupancy}} Pax</samp>
+                            <button ng-disabled="checkAlreadyAdded(room.id)" ng-click="addRoom(room)">ADD ROOM</button>
                         </div>
                     </div>
                     <!-- For Mobile -->
@@ -92,7 +94,7 @@
                         <ul>
                             <li class="pr_lt bd_bt">
                                 <h3>{{room.name}}</h3>
-                                <span>2 Pax</span>
+                                <span>{{room.defaultOccupancy}} Pax</span>
                             </li>
                             <li class="pr_rt bd_bt" ng-repeat="rate in room.rates">
                                 <h2>
@@ -240,24 +242,27 @@
 <!-- Add Room Model -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="addRoomModal">
     <div class="modal-dialog modal-md">
-        <div class="sidebar_data">
+        <div class="sidebar_data custom-radio">
             <div class="sidebar_row" style="border-bottom:none; position: initial">
                 <div class="modal-header" style="border-bottom:none">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" style="text-align: center">How many guests are staying?</h4>
                 </div>
-                <div class="modal-body" style="border-bottom:none">
+                <div class="modal-body" style="border-bottom:none;text-align: center">
                     <label class="radio-inline">
-                        <input type="radio" name="optradio" class=" guestTotal">1 Pax
+                        <input type="radio" name="optradio" class="guestTotal" ng-model="onePerson"><i class="fa fa-user" aria-hidden="true"></i>
+                        <span>1 Pax</span>
+                        <span class="checkmark"></span>
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="optradio" class="guestTotal">2 Pax
+                        <input type="radio" name="optradio" class="guestTotal" ng-model="twoPerson"><i style="margin-left: 10px;" class="fa fa-user" aria-hidden="true"></i><i style="margin-right: 5px;" class="fa fa-user" aria-hidden="true"></i>2 Pax
+                        <span class="checkmark"></span>
                     </label>
-                    <h4 class="modal-title" style="text-align: center">ZAR 228,000.00 for 2 Nights</h4>
+                    <h4 class="modal-title" style="margin-top: 20px;" ng-repeat="currentRate in currentRoom.rates">ZAR {{ currentRate.price.formatted | currency : value ="" }} for 2 Nights</h4>
                 </div>
                 <div class="modal-footer" style="border-top:none;text-align: center">
                     <button type="button" class="" data-dismiss="modal"  style="height: 60px;	width: 128px; background-color: #828282;">CANCEL</button>
-                    <button type="button" class="total_btn" id="" ng-click="removeRoomFromCart(roomModelId)" style="height: 60px;	width: 125px;	border: 1px solid #C88864;	background-color: #C88864;">ADD ROOM</button>
+                    <button type="button" class="total_btn" id="" ng-click="addRoomToCart(currentRoom, onePerson, twoPerson)" style="height: 60px;	width: 125px;	border: 1px solid #C88864;	background-color: #C88864;">ADD ROOM</button>
                 </div>
             </div>
         </div>
