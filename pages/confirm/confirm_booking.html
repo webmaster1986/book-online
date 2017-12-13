@@ -95,18 +95,20 @@
         </div>
     </div>
 </form>
-<div class="col-md-4 col-sm-5 col-xs-12" >
+
+<div class="col-md-4 col-sm-5 col-xs-12" ng-repeat="guestInformation in $storage.userInformation.guests">
     <div class="right_sidebar" >
         <div class="sidebar_heading">
-            <h2>MAIN GUEST</h2>
+            <h2 ng-if="$index == 0">MAIN GUEST</h2>
+            <h2 ng-if="$index > 0">{{$index}} GUEST </h2>
             <a href="#/personal">Edit</a>
         </div>
         <div class="sidebar_data">
             <p>
-                {{$storage.userInformation.guestName}} {{$storage.userInformation.guestSurname}}<br>
-                {{$storage.userInformation.guestEmail}}<br>
-                {{$storage.userInformation.guestTelephone}}<br>
-                {{$storage.userInformation.guestSurname}}<br>
+                {{guestInformation.guestName}} {{guestInformation.guestSurname}}<br>
+                {{guestInformation.guestEmail}}<br>
+                {{guestInformation.guestTelephone}}<br>
+                {{guestInformation.guestSurname}}<br>
                 Cape Town<br>
                 8000
             </p>
